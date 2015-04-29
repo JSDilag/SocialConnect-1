@@ -18,27 +18,36 @@
             if (Idtrim().equals("") || Password.trim().equals(""))   /*If just whitespace */
              {   response.sendRedirect("index.html"); 
              } 
-            else 
+            else  /* Try Customer */
             {   query = "SELECT * FROM Customer WHERE CustomerId= '" +
                             Id+ "' AND Password = '" + Password  + "'";
                	java.sql.ResultSet rs = DBConnection.ExecQuery(query);
 		        if (rs.next())
                   {  // login success
-                    session.setAttribute("login", ID);
+                    session.setAttribute("login", Id);
                     response.sendRedirect("CustomerHomepage.jsp");
 		          } 
                 
-                else{
+                else{        /*Try Employee */
                         query = "SELECT * FROM Employee WHERE EmployeeId= '" +
                             Id+ "' AND Password = '" + Password  + "'";
                         rs = DBConnection.ExecQuery(query);
                         if (rs.next()) {
-                            session.setAttribute("login", ID);
+                            session.setAttribute("login", Id);
                             response.sendRedirect("EmployeeHomepage.jsp");
                         }
-                        else {
-				            // Idor Password mistake                           
-                            out.print("Idor Password is not Correct!!!");
+                        else{        /*Try Manager */
+                            query = "SELECT * FROM Manager WHERE ManagerId= '" +
+                                Id+ "' AND Password = '" + Password  + "'";
+                            rs = DBConnection.ExecQuery(query);
+                            if (rs.next()) {
+                                session.setAttribute("login", Id);
+                                response.sendRedirect("ManagerHomepage.jsp");
+                            }
+
+                            else {
+				            // Id or Password mistake                           
+                            out.print("Id or Password is not Correct!!!");
                             %>
                             <br/>
                             <a href="index.html"> Back to login page </a>
