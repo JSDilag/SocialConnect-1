@@ -9,18 +9,18 @@
 		return;
 	}
 
-	String ID = request.getParameter("ID");
+	String Id = request.getParameter("Id");
 	String Password = request.getParameter("Password");
         String query=null;
 	session.setAttribute("login", "");
-	if ((ID != null) && (Password != null))
+	if ((Id!= null) && (Password != null))   /*Fields entered */
         {
-            if (ID.trim().equals("") || Password.trim().equals(""))
-             {   response.sendRedirect("index.html");
+            if (Idtrim().equals("") || Password.trim().equals(""))   /*If just whitespace */
+             {   response.sendRedirect("index.html"); 
              } 
             else 
-            {   query = "SELECT * FROM Customer WHERE CustomerID = '" +
-                            ID + "' AND Password = '" + Password  + "'";
+            {   query = "SELECT * FROM Customer WHERE CustomerId= '" +
+                            Id+ "' AND Password = '" + Password  + "'";
                	java.sql.ResultSet rs = DBConnection.ExecQuery(query);
 		        if (rs.next())
                   {  // login success
@@ -29,16 +29,16 @@
 		          } 
                 
                 else{
-                        query = "SELECT * FROM Employee WHERE EmployeeID = '" +
-                            ID + "' AND Password = '" + Password  + "'";
+                        query = "SELECT * FROM Employee WHERE EmployeeId= '" +
+                            Id+ "' AND Password = '" + Password  + "'";
                         rs = DBConnection.ExecQuery(query);
                         if (rs.next()) {
                             session.setAttribute("login", ID);
                             response.sendRedirect("EmployeeHomepage.jsp");
                         }
                         else {
-				            // ID or Password mistake                           
-                            out.print("ID or Password is not Correct!!!");
+				            // Idor Password mistake                           
+                            out.print("Idor Password is not Correct!!!");
                             %>
                             <br/>
                             <a href="index.html"> Back to login page </a>

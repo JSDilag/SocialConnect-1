@@ -19,7 +19,7 @@ import static org.apache.tomcat.jni.User.username;
  */
 public class DBConnection {
     static String mysJDBCDriver = "com.mysql.jdbc.Driver";
-    static String url = "jdbc:mysql://localhost:3306/studentreg";
+    static String url = "jdbc:mysql://localhost:3306/SocialConnect";
     static String username = "root";
     static String password = "";
     static java.sql.Connection myConnection = null;

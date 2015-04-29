@@ -128,75 +128,99 @@
   <div class="row">
     <div class="col-xs-4">
       <div class="AdBox">
-      <img style="width:100%; float:right;" src="images/ford2012.jpg">
+        <a href="Ford2012.jsp">
+         <img style="width:100%; float:right;" src="images/ford2012.jpg">
+        </a> 
       </div>
     </div>
     <div class="col-xs-6">      
-      <div class="form-group">
-         <input name="MyPost" type="post" class="form-control input-lg" placeholder="Write a post...">
+      <div class="form-group" >
+         <input name="MyPost" type="post" id="WritePostBox" class="form-control input-lg" placeholder="Write a post...">
       </div>
+        <div class="row">
+          <div class="col-xs-8">      
+          </div>
+          <div class="col-xs-2"> 
+            <div class="col-sm-10 col-sm-offset-2">
+                <a href="CustomerHomepage.jsp" >
+                    <input id="writePost" name="writePost" type="submit" value="Post" class="btn btn-primary" >
+                </a>
+            </div>    
+          </div>
+         </div>  
     </div>    
     <div class="col-xs-2">      
       Thuglife
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-8">      
-    </div>
-    <div class="col-xs-2"> 
-      <div class="col-sm-10 col-sm-offset-2">
-          <a href="CustomerHomepage.jsp" >
-              <input id="writePost" name="writePost" type="submit" value="Post" class="btn btn-primary" >
-          </a>
-      </div>    
-    </div>
-  </div>  
+
   <div class="row">
     <div class="col-xs-4">
-      
+        <div class="AdBox">
+        <a href="SuperManShirt.jsp">
+         <img style="width:95%; float:right; border-style: solid; " src="images/supermanshirt.jpg">
+        </a> 
+      </div>
     </div>
-    <div class="col-xs-6">
-      <div class="col-xs-4">
-        Date <%
-        String Query =   "SELECT P.Date FROM Post P LIMIT 15" ;
+    <div class="col-xs-6">   <!-- Middle column -->
+      <div class="PostBox">
+        <div class="col-xs-1">
+          Date <%
+          String Query =   "SELECT P.Date FROM Post P LIMIT 15" ;
 
-        java.sql.ResultSet pDate =DBConnection.ExecQuery(Query); 
+          java.sql.ResultSet pDate =DBConnection.ExecQuery(Query); 
 
-        %>  
-        <% out.print(pDate.getString(1)); %>
-      </div>
-      <div class="col-xs-2">
-      
-        <%
-        String Query =   "SELECT P.Content FROM Post P LIMIT 15" ;
-
-        java.sql.ResultSet pContent =DBConnection.ExecQuery(Query); 
-
-        %>  
-        <% out.print(pContent.getString(1)); %>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">
+          %>  
+          <% out.print(pDate.getString(1)); %>
         </div>
-        <div class="col-xs-4">
-          <a href="EditPost.jsp">Edit</a>
-        </div>
-      </div>
-      <div class="row">
-      Comment
-      <%
-        Query =   "SELECT C.Content FROM Comment C WHERE C.PostID="+pContent.getString(1)+" AND C.PostID=P.PostID LIMIT 2" ;
-        java.sql.ResultSet pContent =DBConnection.ExecQuery(Query); 
+        <div class="col-xs-5">
+        
+          <%
+          String Query =   "SELECT P.Content FROM Post P LIMIT 15" ;
 
-        %>  
-        <% out.print(pContent.getString(1)); %>
-      </div>
-      <div class="row">
-      Comment
-        <% out.print(pContent.getString(2)); %>
-      </div>      
+          java.sql.ResultSet pContent =DBConnection.ExecQuery(Query); 
+
+          %>  
+          <% out.print(pContent.getString(1)); %>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">
+          </div>
+          <div class="col-xs-2">
+            <a href="EditPost.jsp">Edit</a>
+          </div>
+        </div>
+      </div>   
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+    </div>
+    <div class="col-xs-6">
+      <div class="CommentBox">   
+          Comment
+          <%
+           Query =   "SELECT C.Content FROM Comment C WHERE C.PostID="+pContent.getString(1)+" AND C.PostID=P.PostID LIMIT 2" ;
+            java.sql.ResultSet pContent =DBConnection.ExecQuery(Query); 
+
+          %>  
+          <% out.print(pContent.getString(1)); %>
+      </div>    
+    </div>      
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+    </div>
+    <div class="col-xs-6">
+      <div class="CommentBox">            
+          Comment
+          <% out.print(pContent.getString(2)); %>
+      </div>    
+    </div>      
+  </div>  
+         
+
         <div class="container-fluid">
  
         <div id="page-wrapper">      

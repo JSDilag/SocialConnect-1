@@ -31,6 +31,7 @@
 	width: 100%;
 }
 
+/*for CustomerHomepage.jsp */
 .innerBackground {
 	height: 80%;
 	width: 80%;
@@ -44,5 +45,16 @@
 	background-color: red;
 }
 input[type="post"].input-lg {
-	height: 200px;
+	height: 150px;
+	padding: 1px;
+	padding-bottom: 0px;
+}
+
+.PostBox {
+	background-color: yellow;
+}
+.btn-primary {
+	padding: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
 }
