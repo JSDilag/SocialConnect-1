@@ -43,6 +43,7 @@
 
 </div>
     <div class="background">
+      <div class="innerBackground">
         <div class="posts">
             <div class="column" style="width: 400px; height: 100px; background-color: yellow; border-style: solid;">
                 <% String Query = 
@@ -77,7 +78,7 @@
 
         </div>  
  
-
+      </div>  
 
     </div> 
 
@@ -126,17 +127,30 @@
   </div>
   <div class="row">
     <div class="col-xs-4">
-      Advertisement
+      <div class="AdBox">
+      <img style="width:100%; float:right;" src="images/ford2012.jpg">
+      </div>
     </div>
     <div class="col-xs-6">      
       <div class="form-group">
-         <input name="MyPost" type="text" class="form-control input-lg" placeholder="Write a post...">
+         <input name="MyPost" type="post" class="form-control input-lg" placeholder="Write a post...">
       </div>
     </div>    
     <div class="col-xs-2">      
       Thuglife
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-8">      
+    </div>
+    <div class="col-xs-2"> 
+      <div class="col-sm-10 col-sm-offset-2">
+          <a href="CustomerHomepage.jsp" >
+              <input id="writePost" name="writePost" type="submit" value="Post" class="btn btn-primary" >
+          </a>
+      </div>    
+    </div>
+  </div>  
   <div class="row">
     <div class="col-xs-4">
       
@@ -171,13 +185,16 @@
       <div class="row">
       Comment
       <%
-        String Query =   "SELECT C.Content FROM Comment C WHERE C.PostID=P.PostID LIMIT 2" ;
-
+        Query =   "SELECT C.Content FROM Comment C WHERE C.PostID="+pContent.getString(1)+" AND C.PostID=P.PostID LIMIT 2" ;
         java.sql.ResultSet pContent =DBConnection.ExecQuery(Query); 
 
         %>  
         <% out.print(pContent.getString(1)); %>
       </div>
+      <div class="row">
+      Comment
+        <% out.print(pContent.getString(2)); %>
+      </div>      
     </div>
   </div>
         <div class="container-fluid">
@@ -228,7 +245,7 @@
                                // " and Professor.Id=Course.InsNo" +
                                // " and Transcript.StudId='"+ID+"'" ;
                                 java.sql.ResultSet rs =DBConnection.ExecQuery(Query);
-      	                        String strGrade=null;
+                                String strGrade=null;
                                 while(rs.next())
                                 {
                                     strGrade = rs.getString(5);
@@ -246,7 +263,7 @@
                                       <td>
                                       <% if (rs.getString(5).trim().equals("-1"))
                                       {%>
-                                    	<input type="button" onclick="javascript:if (confirm('Are you sure that you want to delete the course?')==true)
+                                      <input type="button" onclick="javascript:if (confirm('Are you sure that you want to delete the course?')==true)
                                         {
                                             window.open('CourseDelete.jsp?userid=<%=ID%>&crscode=<%=rs.getString(1)%>','_self');
                                         };return;" value="Delete">
@@ -260,7 +277,7 @@
                                       %>
                                        </td>
                                      </tr>
-                                   <%      		
+                                   <%         
                                  }
                                   %>
                                     
