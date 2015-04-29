@@ -143,6 +143,16 @@
     </div>
     <div class="col-xs-6">
       <div class="col-xs-4">
+        Date <%
+        String Query =   "SELECT P.Date FROM Post P LIMIT 15" ;
+
+        java.sql.ResultSet pDate =DBConnection.ExecQuery(Query); 
+
+        %>  
+        <% out.print(pDate.getString(1)); %>
+      </div>
+      <div class="col-xs-2">
+      
         <%
         String Query =   "SELECT P.Content FROM Post P LIMIT 15" ;
 
@@ -150,16 +160,6 @@
 
         %>  
         <% out.print(pContent.getString(1)); %>
-      </div>
-      <div class="col-xs-2">
-      Date  
-      <%
-        Query =   "SELECT P.Date FROM Post P LIMIT 15" ;
-
-        pDate =DBConnection.ExecQuery(Query); 
-
-        %>  
-        <% out.print(pDate.getString(1)); %>
       </div>
       <div class="row">
         <div class="col-xs-4">
@@ -170,6 +170,13 @@
       </div>
       <div class="row">
       Comment
+      <%
+        String Query =   "SELECT C.Content FROM Comment C WHERE C.PostID=P.PostID LIMIT 2" ;
+
+        java.sql.ResultSet pContent =DBConnection.ExecQuery(Query); 
+
+        %>  
+        <% out.print(pContent.getString(1)); %>
       </div>
     </div>
   </div>
