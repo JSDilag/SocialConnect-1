@@ -33,7 +33,7 @@
 
 <body>
     <% String ID = session.getAttribute("login").toString();
-        String query;
+        String Query;
         java.sql.ResultSet rs;
     %>
 
@@ -95,7 +95,15 @@
              <input name="MyPost" type="post" id="WritePostBox" class="form-control input-lg" placeholder="Write a post...">
           </div>
             <div class="row">
-              <div class="col-xs-8">      
+              <div class="col-xs-4">
+                <% Query = "SELECT A.Content FROM Advertisement A WHERE A.ItemName='Superman Shirt'";
+                   rs =DBConnection.ExecQuery(Query);  
+                   if(rs.next())
+                   {   out.print(rs);
+                    }
+                %>      
+              </div>
+              <div class="col-xs-4">      
               </div>
               <div class="col-xs-2"> 
                 <div class="col-sm-10 col-sm-offset-2">
@@ -141,7 +149,7 @@
                                         " from Comment C, Post P, Customer Cus" +
                                         "where C.AuthorID=Cus.CustomerID AND C.PostID=P.PostID";
                          java.sql.ResultSet cs =DBConnection.ExecQuery(Query);                                
-                        while(rs.next())
+                        while(cs.next())
                         {
                       %>
                             <tr>
@@ -176,105 +184,6 @@
     </div>
   </div>
 </div>
-
-         
-
-        <div class="container-fluid">
- 
-        <div id="page-wrapper">      
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Homepage
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="CustomerHomepage.jsp">Homepage</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> 
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
-                
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2>Your Course List</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th> CrsCode </th>
-                                        <th> CrsName </th>    
-                                        <th>DeptID</th>
-                                        <th>ProfName</th>
-                                        <th>Grade</th>
-                                        <th> Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <%
-                                String ID = session.getAttribute("login").toString();
-                                String Query = 
-                                "select Post.PostID,Post.Content," + 
-                                " Post.Date" +
-                                " from Post";
-                               // " where" +
-                               // " Course.CrsCode=Transcript.CrsCode" +
-                               // " and Professor.Id=Course.InsNo" +
-                               // " and Transcript.StudId='"+ID+"'" ;
-                                java.sql.ResultSet rs =DBConnection.ExecQuery(Query);
-                                String strGrade=null;
-                                while(rs.next())
-                                {
-                                    strGrade = rs.getString(5);
-                                    if(rs.getString(5).trim().equals("-1"))
-                                    {
-                                        strGrade = "N/A";
-                                    }
-                               %>
-                                  <tr>
-                                      <td > <% out.print(rs.getString(1)); %> </td>
-                                      <td > <% out.print(rs.getString(2)); %> </td>
-                                      <td > <% out.print(rs.getString(3)); %> </td>
-                                      <td > <% out.print(rs.getString(4)); %> </td>
-                                      <td > <% out.print(strGrade); %> </td>
-                                      <td>
-                                      <% if (rs.getString(5).trim().equals("-1"))
-                                      {%>
-                                      <input type="button" onclick="javascript:if (confirm('Are you sure that you want to delete the course?')==true)
-                                        {
-                                            window.open('CourseDelete.jsp?userid=<%=ID%>&crscode=<%=rs.getString(1)%>','_self');
-                                        };return;" value="Delete">
-                                      <%}
-                                      else{
-                                          
-                                           out.print("No Change");
-                                          
-                                      }
-                                      
-                                      %>
-                                       </td>
-                                     </tr>
-                                   <%         
-                                 }
-                                  %>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-
 
 
 </body>

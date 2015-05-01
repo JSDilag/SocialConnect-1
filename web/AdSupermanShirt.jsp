@@ -24,10 +24,9 @@
            java.sql.ResultSet rs =DBConnection.ExecQuery(Query);
 
            if (rs.next())
-           {  out.print(cs.getString(1)+" ");
-
-
+           {  out.print(rs.getString(1)+" ");
             }  
+           request.setParameter("ItemName", rs.getString(1));
         %>                
     </body>
 </html>
