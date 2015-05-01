@@ -15,7 +15,7 @@
 	session.setAttribute("login", "");
 	if ((Id!= null) && (Password != null))   /*Fields entered */
         {
-            if (Idtrim().equals("") || Password.trim().equals(""))   /*If just whitespace */
+            if (Id.trim().equals("") || Password.trim().equals(""))   /*If just whitespace */
              {   response.sendRedirect("index.html"); 
              } 
             else  /* Try Customer */

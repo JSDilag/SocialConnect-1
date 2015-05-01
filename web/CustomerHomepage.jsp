@@ -4,32 +4,38 @@
 <%@ page import="java.sql.ResultSet" %>
 -->
 
+<%  
+    //userID
+    String ID = request.getParameter("Id");
+    
+%>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>SocialConnect Customer Homepage</title>
-    <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
-      <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon">
-      <meta name="generator" content="Bootply" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <!--[if lt IE 9]>
-              <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <![endif]-->
+        <title>SocialConnect Customer Homepage</title>
+        <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
+        <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon">
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-</head>
+    </head>
+
 
 <body>
     <% String ID = session.getAttribute("login").toString();
@@ -37,6 +43,7 @@
         java.sql.ResultSet rs;
     %>
 
+    <body>
 
     <div id="wrapper">
 
@@ -77,6 +84,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+
         </div>
 <div class="background">
   <div class="innerBackground">
@@ -99,7 +107,7 @@
                 <% Query = "SELECT A.Content FROM Advertisement A WHERE A.ItemName='Superman Shirt'";
                    rs =DBConnection.ExecQuery(Query);  
                    if(rs.next())
-                   {   out.print(rs);
+                   {   out.print(rs.getString(1));
                     }
                 %>      
               </div>
@@ -185,7 +193,6 @@
   </div>
 </div>
 
-
-</body>
+            </body>
 
 </html>
