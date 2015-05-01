@@ -9,41 +9,39 @@
 		return;
 	}
 
-	String username = request.getParameter("username");
-	String userpasswd = request.getParameter("userpasswd");
+	String ID = request.getParameter("ID");
+	String Password = request.getParameter("Password");
         String query=null;
 	session.setAttribute("login", "");
-	if ((username != null) && (userpasswd != null))
+	if ((ID != null) && (Password != null))
         {
-            if (username.trim().equals("") || userpasswd.trim().equals("")) {
-		response.sendRedirect("index.htm");
-            } 
-            else {
-                
-                query = "SELECT * FROM STUDENT WHERE ID = '" +
-                            username + "' AND Pswd = '" + userpasswd  + "'";
+            if (ID.trim().equals("") || Password.trim().equals(""))
+             {   response.sendRedirect("index.html");
+             } 
+            else 
+            {   query = "SELECT * FROM Customer WHERE CustomerID = '" +
+                            ID + "' AND Password = '" + Password  + "'";
                	java.sql.ResultSet rs = DBConnection.ExecQuery(query);
-		if (rs.next()) {
-                    // login success
-                    session.setAttribute("login", username);
-                    response.sendRedirect("StudentInformation.jsp");
-		} 
+		        if (rs.next())
+                  {  // login success
+                    session.setAttribute("login", ID);
+                    response.sendRedirect("CustomerHomepage.jsp");
+		          } 
                 
                 else{
-                        query = "SELECT * FROM Professor WHERE ID = '" +
-                            username + "' AND Pswd = '" + userpasswd  + "'";
+                        query = "SELECT * FROM Employee WHERE EmployeeID = '" +
+                            ID + "' AND Password = '" + Password  + "'";
                         rs = DBConnection.ExecQuery(query);
                         if (rs.next()) {
-                            session.setAttribute("login", username);
-                            response.sendRedirect("FacultyInformation.jsp");
+                            session.setAttribute("login", ID);
+                            response.sendRedirect("EmployeeHomepage.jsp");
                         }
                         else {
-				// username or password mistake
-                            
-                            out.print("Username or Password is not Correct!!!");
+				            // ID or Password mistake                           
+                            out.print("ID or Password is not Correct!!!");
                             %>
                             <br/>
-                            <a href="index.htm"> Back to login page </a>
+                            <a href="index.html"> Back to login page </a>
                             <%
                         }
                     }
