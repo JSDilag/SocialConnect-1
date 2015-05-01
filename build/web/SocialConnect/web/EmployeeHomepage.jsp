@@ -26,7 +26,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="css/sb-admin.css" rel="stylesheet">
+        <!--<link href="css/sb-admin.css" rel="stylesheet">-->
 
         <!-- Custom Fonts -->
         <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
 
     <body>
 
-        <div id="wrapper">
+        <div id="page-wrapper">
 
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
