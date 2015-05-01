@@ -1,3 +1,9 @@
+
+<!--
+<%@page import="DBWorks.DBConnection"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet" %>
+-->
 <html lang="en">
     <head>
 
@@ -6,7 +12,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
         <title>Homepage Dashboard</title>
 
         <!-- Bootstrap Core CSS -->
@@ -41,6 +46,14 @@
             <hr>
             <nav>
                 <ul id="navbar">
+
+        </header>
+            
+            <div id="title">
+                <b>SocialConnect</b>
+            </div>
+            <nav id="navbar">
+                <ul>
                     <li id="home" class="navbar-item">Home</li>
                     <li id="circles" class="navbar-item">Circles</li>
                     <li id="advertisements" class="navbar-item">My Advertisements</li>
