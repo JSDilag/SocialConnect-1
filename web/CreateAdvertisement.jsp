@@ -39,7 +39,7 @@
             <hr>
             
         </header>
-        <form>
+        <form style="width: 50%;">
             <div class="form-group">
                 <label for="inputType">Type</label>
                 <input type="text" class="form-control" id="inputType" placeholder="Enter type" name="type">
@@ -68,7 +68,8 @@
                 <label for="inputQuantity">Quantity</label>
                 <input type="number" class="form-control" id="inputQuantity" placeholder="Enter quantity" name="quantity">
             </div>
-            <button type="submit">Submit</button>
+            <button onclick="location.href="'AdvertisementSuccessful.jsp'">Submit</button>
+            <button type="reset">Reset</button>
             <button>Cancel</button>
         </form>
         <%

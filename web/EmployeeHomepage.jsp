@@ -4,6 +4,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet" %>
 -->
+
 <html lang="en">
     <head>
 
@@ -19,16 +20,6 @@
 
         <!-- Custom CSS -->
         <link href="css/employee.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         
@@ -39,27 +30,27 @@
 
     <body>
         <header>
-            <h1>
-                <b>SocialConnect</b>
-            </h1>
-            <hr>
-
+            <h1>SocialConnect</h1>
+        </header>
+        
+        <nav>
             <ul id="navbar">
                 <li id="home" class="navbar-item"><a href="EmployeeHomepage.jsp">Home</a></li>
                 <li id="messages" class="navbar-item">Messages</li>
-                <li id="circles" class="navbar-item">Circles</li>
                 <li id="advertisements" class="navbar-item">My Advertisements</li>
                 <li id="sales" class="navbar-item">My Transactions</li>
-                <li id="customers" class="navbar-item">Customers</li>
+                <!--<li id="customers" class="navbar-item">Customers</li>-->
             </ul>
+        </nav>
 
-            <div style="clear: both;"></div>
-
-        </header>
+        <div style="clear: both;"></div>
 
         <!-- Displays the info of the employee -->
         <div id="my-info">
-            <span>My name<br></span>
+            <h3>Transactions</h3>
+            <%
+                
+            %>
         </div>
 
         <!--
@@ -68,14 +59,39 @@
         Produce a list of customer emails
         Produce a list of customer item suggestions
         -->
-        <div id="content">
+        <div id="employee-abilities">
             <ul id="buttonlist">
-                <li><button id="create-ad" class="buttons">Create an Advertisement</button></li>
-                <li><button id="" class="buttons">Delete an Advertisement</button></li>
-                <li><button id="" class="buttons">Record a Transaction</button></li>
-                <li><button id="" class="buttons">Customers</button></li>
-                <li><button id="" class="buttons">Customer Mailing List</button></li>
+                <!--<li><button id="" class="buttons" onclick="location.href='CreateAdvertisement.jsp'">Create an Advertisement</button></li>-->
+<!--                <li><button id="" class="buttons">Delete an Advertisement</button></li>-->
+                <!--<li><button id="" class="buttons">Record a Transaction</button></li>-->
+                <!--<li><button id="" class="buttons">Customers</button></li>-->
+                <!--<li><button id="" class="buttons">Customer Mailing List</button></li>-->
             </ul>
+            <div id="advertisement">
+                <button class="buttons" onclick="location.href='CreateAdvertisement.jsp'">Create an Advertisement</button>
+                <h2>Delete an Advertisement</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="inputAdID">Enter Advertisement ID to delete</label>
+                        <input type="number" class="form-control" id="inputAdID" name="adid">
+                    </div>
+                    <button type="submit">Delete Advertisement</button>
+                </form>
+            </div>
+            <div id="transaction">
+                <button id="" class="buttons">Record a Transaction</button>
+            </div>
+            <div id="customers">
+                <button class="buttons">Add Customer</button>
+                <button class="buttons">Edit Customer</button>
+                <form>
+                    <div class="form-group">
+                        <label for="inputCustomerID">Enter Customer ID to delete</label>
+                        <input type="number" class="form-control" id="inputCustomerID" name="customerid">
+                    </div>
+                    <button type="submit">Delete Customer</button>
+                </form>
+            </div>
         </div>
 
         <footer>

@@ -1,5 +1,5 @@
 
-// --------- EMPLOYEE HOMEPAGE ---------
+/* ----- EMPLOYEE HOMEPAGE ----- */
 
 html
 {
@@ -19,8 +19,11 @@ header
     background-color: white;
     font-size: 50px;
     color: black;
-    margin-bottom: 20px;
     padding: 20px;
+}
+
+nav
+{
 }
 
 #navbar
@@ -34,8 +37,8 @@ header
     display: inline;
     float: left;
     font-size: 20px;
-    padding: 15px 5px;
-    margin: 0;
+    padding: 10px 5px;
+    margin-bottom: 10px;
 }
 
 .navbar-item:hover
@@ -45,7 +48,7 @@ header
 
 footer
 {
-    border-top: thick solid black;
+    border-top: solid black;
     background-color: white;
     font-size: 10px;
     bottom: 0;
@@ -56,15 +59,16 @@ footer
 {
     background-color: whitesmoke;
     float: left;
-    width: 50%;
+    margin-right: 10px;
+    width: 30%;
 }
 
-#content
+#employee-abilities
 {
-    background-color: gray;
-    float: right;
+    background-color: whitesmoke;
+    float: left;
     padding: 10px;
-    width: 50%;
+    width: 60%;
 }
 
 #buttonlist
@@ -76,6 +80,7 @@ footer
 {
     font-size: 30px;
     margin-bottom: 5px;
+    width: 400px;
 }
 
 #home
@@ -88,10 +93,10 @@ footer
     
 }
 
-// --------- Create Advertisement ----------
+/*----- Forms -----*/
 
-/*form
+form
 {
     background-color: white;
     color: black;
-}*/
+}
