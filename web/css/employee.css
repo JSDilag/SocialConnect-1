@@ -1,0 +1,97 @@
+
+// --------- EMPLOYEE HOMEPAGE ---------
+
+html
+{
+    background-color: darkgreen;
+}
+
+body
+{
+    background-color: white;
+    margin: 0 auto;
+    padding: 2% 2%;
+    width: 80%;
+}
+
+header
+{
+    background-color: white;
+    font-size: 50px;
+    color: black;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#navbar
+{
+    list-style-type: none;
+}
+
+.navbar-item
+{
+    color: black;
+    display: inline;
+    float: left;
+    font-size: 20px;
+    padding: 15px 5px;
+    margin: 0;
+}
+
+.navbar-item:hover
+{
+    background-color: whitesmoke;
+}
+
+footer
+{
+    border-top: thick solid black;
+    background-color: white;
+    font-size: 10px;
+    bottom: 0;
+    position: absolute;
+}
+
+#my-info
+{
+    background-color: whitesmoke;
+    float: left;
+    width: 50%;
+}
+
+#content
+{
+    background-color: gray;
+    float: right;
+    padding: 10px;
+    width: 50%;
+}
+
+#buttonlist
+{
+    list-style-type: none;
+}
+
+.buttons
+{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+#home
+{
+    
+}
+
+#circles
+{
+    
+}
+
+// --------- Create Advertisement ----------
+
+/*form
+{
+    background-color: white;
+    color: black;
+}*/
