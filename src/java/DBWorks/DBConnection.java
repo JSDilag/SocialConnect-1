@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DBWorks;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.apache.tomcat.jni.User.username;
 
-/**
- *
- * @author Ahmad
- */
+
 public class DBConnection {
     static String mysJDBCDriver = "com.mysql.jdbc.Driver";
     static String url = "jdbc:mysql://localhost:3306/SocialConnect";

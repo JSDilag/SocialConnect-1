@@ -119,7 +119,7 @@
                       <tr>
                           <th> CircleID </th>
                           <th>CircleName </th>
-                          <th> CIrcleType </th>                              
+                          <th> CircleType </th>                              
                       </tr>
                   </thead>
                   <tbody>

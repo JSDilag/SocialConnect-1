@@ -22,22 +22,31 @@
     </head>
     <body >
 
-        <%
-            String FirstName = session.getAttribute("FirstName");
-            String LastName = session.getAttribute("LastName");
-            String Sex = session.getAttribute("Sex");
-            String Email = session.getAttribute("Email");
-            String DOB = session.getAttribute("DOB");
-            String Address = session.getAttribute("Address");
-            String City = session.getAttribute("City");
-            String State = session.getAttribute("State");
-            String ZipCode = session.getAttribute("ZipCode");
-            String Telephone = session.getAttribute("Telephone");
-            String Preferences = session.getAttribute("Preferences");
-            String Password = session.getAttribute("Password");
-            String Query = "INSERT INTO Customer VALUES (100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "+Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+Preferences+", "+ 1  +", "+Password)" ;
+        <%  
+            String FirstName = request.getParameterValues("FirstName");
+            String LastName = request.getParameterValues("LastName");
+            String Sex = request.getParameterValues("Sex");
+            String Email = request.getParameterValues("Email");
+            String DOB = request.getParameterValues("DOB");
+            String Address = request.getParameterValues("Address");
+            String City = request.getParameterValues("City");
+            String State = request.getParameterValues("State");
+            String ZipCode = request.getParameterValues("ZipCode");
+            String Telephone = request.getParameterValues("Telephone");
+            String Password = request.getParameterValues("Password");
+            String Query = "INSERT INTO Customer VALUES (100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "+Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+ 1  +", "+Password)" ;
 
             java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
+            Query = "INSERT INTO Account VALUES ("+ID+", "+99910100+", '2015-05-07', "+CreditCardNum")";
+            DBConnection.ExecQuery(Query);
+            QUery= "INSERT INTO HasAccount ("+ID", "+99910100+")";
+            DBConnection.ExecQuery(Query);
+            String select[] = request.getParameterValues("Preferences"); 
+            if (select != null && select.length != 0) 
+              {  for (int i = 0; i < select.length; i++) 
+                 {   DBConnection.ExecQuery("INSERT INTO Preferences VALUES ("+ID+", "+select[i]+")");
+                 }
+              }
 
         %>
         <div class="alert alert-success">

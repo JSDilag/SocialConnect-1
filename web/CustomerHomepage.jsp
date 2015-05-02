@@ -3,13 +3,6 @@
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
 -->
-
-<%  
-    //userID
-    String IDs = request.getParameter("Id");
-    int ID = Integer.parseInt(IDs);
-    
-%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +46,8 @@
 
 
 <body>
-    <% String ID = session.getAttribute("login").toString();
+    <% String IDs = session.getAttribute("login").toString();
+       int ID = Integer.parseInt(IDs);
         String Query;
         java.sql.ResultSet rs;
     %>
