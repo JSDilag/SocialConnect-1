@@ -85,6 +85,9 @@
                                 <h4 style="display:inline;">Telephone </h4>
                                 <input name="Telephone" type="text" class="form-control input-lg" placeholder="e.g. 4314649886" >
                             </div>
+                            <div class="form-group">                            
+                                <h4 style="display:inline;">CreditCardNumber </h4>
+                            </div>
                             <div class="form-group">   
                                 <h4 style="display:inline;">Preferences </h4>
                                 <div style="padding-left: 30px;">

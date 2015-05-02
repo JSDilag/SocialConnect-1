@@ -34,20 +34,23 @@
             String ZipCode = request.getParameterValues("ZipCode");
             String Telephone = request.getParameterValues("Telephone");
             String Password = request.getParameterValues("Password");
-            String Query = "INSERT INTO Customer VALUES (100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "+Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+ 1  +", "+Password)" ;
-
-            java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
-            Query = "INSERT INTO Account VALUES ("+ID+", "+99910100+", '2015-05-07', "+CreditCardNum")";
-            DBConnection.ExecQuery(Query);
-            QUery= "INSERT INTO HasAccount ("+ID", "+99910100+")";
-            DBConnection.ExecQuery(Query);
-            String select[] = request.getParameterValues("Preferences"); 
-            if (select != null && select.length != 0) 
-              {  for (int i = 0; i < select.length; i++) 
-                 {   DBConnection.ExecQuery("INSERT INTO Preferences VALUES ("+ID+", "+select[i]+")");
-                 }
-              }
-
+            String CreditCardNum = request.getParameterValues("CreditCardNum");
+            if(FirstName != null && LastName != null && Sex != null && Email != null && 
+                DOB != null && Address != null && City != null && State != null &&
+                ZipCode != null && Telephone != null && Password != null && CreditCardNum != null)
+            {    String Query = "INSERT INTO Customer VALUES (100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "                     +Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+ 1  +", "+Password)" ;
+                java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
+                Query = "INSERT INTO Account VALUES ("+ID+", "+99910100+", '2015-05-07', "+CreditCardNum+")";
+                DBConnection.ExecQuery(Query);
+                QUery= "INSERT INTO HasAccount ("+ID", "+99910100+")";
+                DBConnection.ExecQuery(Query);
+                String select[] = request.getParameterValues("Preferences"); 
+                if (select != null && select.length != 0) 
+                  {  for (int i = 0; i < select.length; i++) 
+                     {   DBConnection.ExecQuery("INSERT INTO Preferences VALUES ("+ID+", "+select[i]+")");
+                     }
+                  }
+            }        
         %>
         <div class="alert alert-success">
             <center>
