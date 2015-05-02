@@ -6,7 +6,8 @@
 
 <%  
     //userID
-    String ID = request.getParameter("Id");
+    String IDs = request.getParameter("Id");
+    int ID = Integer.parseInt(IDs);
     
 %>
 <!DOCTYPE html>
@@ -34,6 +35,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script> 
+            function EditComment(CommentID)
+             { if(CommentID != null) 
+                {   session.setAttribute("commentID", CommentID);
+                    response.sendRedirect("EditComment.jsp");
+                } 
+             }
+            function EditPost(PostID)
+             { if(PostID != null) 
+                {   session.setAttribute("postID", PostID);
+                    response.sendRedirect("EditPost.jsp");
+                } 
+             }
+        </script>    
     </head>
 
 
@@ -137,11 +152,10 @@
         </div>
         <div class="col-xs-6">   <!-- Middle column -->
            <div class="posts">
-                <% Query = 
-                                "select Post.PostID,Post.Date," + 
-                                " Post.Content" +
-                                " from Post";
-                     rs =DBConnection.ExecQuery(Query);                   
+                <% Query =   "select Post.PostID,Post.Date," + 
+                             " Post.Content" +
+                            " from Post";
+                    rs =DBConnection.ExecQuery(Query);                   
 
                  while(rs.next())
                  {
@@ -149,11 +163,11 @@
                     <div class="col-xs-5" style="width: 400px; height: 100px; background-color: yellow; border-style: solid;">
                       <td > <% out.print(rs.getString(1)+", "); %> </td>
                       <td > <% out.print(rs.getString(2)); %> </td> <br>
-                      <td > <% out.print(rs.getString(3)); %> </td> <br>
-
+                      <td > <% out.print(rs.getString(3)); %> </td>
+                      <a onclick="EditPost(<%rs.getString(1)%>)">Edit</a>  
                       <!-- Comments -->
                       <% Query = "select Cus.FirstName,Cus.LastName,C.Date," + 
-                                        " C.Content, C.AuthorID" +
+                                        " C.Content, C.AuthorID, C.CommentID" +
                                         " from Comment C, Post P, Customer Cus" +
                                         "where C.AuthorID=Cus.CustomerID AND C.PostID=P.PostID";
                          java.sql.ResultSet cs =DBConnection.ExecQuery(Query);                                
@@ -165,10 +179,10 @@
                                 <td > <% out.print(cs.getString(2)+", "); %> </td>
                                 <td > <% out.print(cs.getString(3)); %> </td> <br>
                                 <td > <% out.print(cs.getString(4)); %> </td> 
-                                <% if(cs.getString(5).equals(ID))   /*if owner is the User */
+                                <% if(cs.getString(5).equals(IDs))   /*if owner is the User */
                                     {
                                    %>    
-                                      <a href="EditComment.jsp">Edit</a>
+                                      <a onclick="EditComment(<%cs.getString(6)%>)">Edit</a>
                                    <% }
                                 %>
                                 <br>    
