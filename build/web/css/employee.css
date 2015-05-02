@@ -1,32 +1,26 @@
+
+// --------- EMPLOYEE HOMEPAGE ---------
+
 html
 {
-    background-color: gray;
+    background-color: darkgreen;
 }
 
 body
 {
-    background-color: darkcyan;
+    background-color: white;
     margin: 0 auto;
-<<<<<<< Updated upstream
-    padding: 2% 2% 0;
+    padding: 2% 2%;
     width: 80%;
 }
 
 header
 {
+    background-color: white;
     font-size: 50px;
-    color: white;
-=======
+    color: black;
+    margin-bottom: 20px;
     padding: 20px;
-    width: 80%;
-}
-
-#title
-{
-    font-size: 50px;
-    color: white;
-    margin: 20px;
->>>>>>> Stashed changes
 }
 
 #navbar
@@ -34,27 +28,54 @@ header
     list-style-type: none;
 }
 
-<<<<<<< Updated upstream
 .navbar-item
 {
-    background-color: white;
     color: black;
-    display: inline-block;
+    display: inline;
+    float: left;
     font-size: 20px;
-    padding: 15px 10px;
+    padding: 15px 5px;
+    margin: 0;
+}
+
+.navbar-item:hover
+{
+    background-color: whitesmoke;
 }
 
 footer
 {
-    
-}
-=======
-li
-{
+    border-top: thick solid black;
     background-color: white;
-    display: inline;
-    height: 50px;
-    padding: 15px;
+    font-size: 10px;
+    bottom: 0;
+    position: absolute;
+}
+
+#my-info
+{
+    background-color: whitesmoke;
+    float: left;
+    width: 50%;
+}
+
+#content
+{
+    background-color: gray;
+    float: right;
+    padding: 10px;
+    width: 50%;
+}
+
+#buttonlist
+{
+    list-style-type: none;
+}
+
+.buttons
+{
+    font-size: 30px;
+    margin-bottom: 5px;
 }
 
 #home
@@ -67,8 +88,10 @@ li
     
 }
 
-.navbar-item
+// --------- Create Advertisement ----------
+
+/*form
 {
-    font-size: 20px;
-}
->>>>>>> Stashed changes
+    background-color: white;
+    color: black;
+}*/

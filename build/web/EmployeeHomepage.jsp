@@ -34,37 +34,34 @@
         
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
+        
     </head>
 
     <body>
-
         <header>
-            
             <h1>
                 <b>SocialConnect</b>
             </h1>
             <hr>
-            <nav>
-                <ul id="navbar">
+
+            <ul id="navbar">
+                <li id="home" class="navbar-item"><a href="EmployeeHomepage.jsp">Home</a></li>
+                <li id="messages" class="navbar-item">Messages</li>
+                <li id="circles" class="navbar-item">Circles</li>
+                <li id="advertisements" class="navbar-item">My Advertisements</li>
+                <li id="sales" class="navbar-item">My Transactions</li>
+                <li id="customers" class="navbar-item">Customers</li>
+            </ul>
+
+            <div style="clear: both;"></div>
 
         </header>
-            
-            <div id="title">
-                <b>SocialConnect</b>
-            </div>
-            <nav id="navbar">
-                <ul>
-                    <li id="home" class="navbar-item">Home</li>
-                    <li id="circles" class="navbar-item">Circles</li>
-                    <li id="advertisements" class="navbar-item">My Advertisements</li>
-                    <li id="sales" class="navbar-item">My Transactions</li>
-                    <li id="messages" class="navbar-item">Messages</li>
-                    <li id="customers" class="navbar-item">Customers</li>
-                </ul>
-            </nav>
-            
-        </header>
-        
+
+        <!-- Displays the info of the employee -->
+        <div id="my-info">
+            <span>My name<br></span>
+        </div>
+
         <!--
         Left side bar
         View customers to edit/add/delete
@@ -72,12 +69,19 @@
         Produce a list of customer item suggestions
         -->
         <div id="content">
-            
+            <ul id="buttonlist">
+                <li><button id="create-ad" class="buttons">Create an Advertisement</button></li>
+                <li><button id="" class="buttons">Delete an Advertisement</button></li>
+                <li><button id="" class="buttons">Record a Transaction</button></li>
+                <li><button id="" class="buttons">Customers</button></li>
+                <li><button id="" class="buttons">Customer Mailing List</button></li>
+            </ul>
         </div>
-        
-        <footer>
-            
-        </footer>
 
+        <footer>
+            <p>
+                &copy;2015 SocialConnect. Steven Liao
+            </p>
+        </footer>
     </body>
 </html>

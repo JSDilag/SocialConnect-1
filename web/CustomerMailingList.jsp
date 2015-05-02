@@ -1,18 +1,18 @@
 
-<!--
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DBWorks.DBConnection"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.ResultSet" %>
--->
-<html lang="en">
-    <head>
+<%@page import="java.sql.ResultSet"%>
 
+<!DOCTYPE html>
+<html>
+
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Homepage Dashboard</title>
+        <title>Customer Mailing List</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -29,15 +29,15 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        
+
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-        
     </head>
 
     <body>
+        
         <header>
             <h1>
                 <b>SocialConnect</b>
@@ -56,32 +56,17 @@
             <div style="clear: both;"></div>
 
         </header>
-
-        <!-- Displays the info of the employee -->
-        <div id="my-info">
-            <span>My name<br></span>
-        </div>
-
-        <!--
-        Left side bar
-        View customers to edit/add/delete
-        Produce a list of customer emails
-        Produce a list of customer item suggestions
-        -->
-        <div id="content">
-            <ul id="buttonlist">
-                <li><button id="create-ad" class="buttons">Create an Advertisement</button></li>
-                <li><button id="" class="buttons">Delete an Advertisement</button></li>
-                <li><button id="" class="buttons">Record a Transaction</button></li>
-                <li><button id="" class="buttons">Customers</button></li>
-                <li><button id="" class="buttons">Customer Mailing List</button></li>
-            </ul>
-        </div>
-
-        <footer>
-            <p>
-                &copy;2015 SocialConnect. Steven Liao
-            </p>
-        </footer>
+        
+        <%
+            String query = "SELECT C.Email FROM Customer C";
+            java.sql.ResultSet rs = DBConnection.ExecQuery(query);
+            while (rs.next())
+            {
+                out.println(rs.getString(1));
+            }
+        %>
+        
+        <button><a href="">Return home</a></button>
     </body>
+
 </html>
