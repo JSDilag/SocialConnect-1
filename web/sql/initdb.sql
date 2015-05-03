@@ -12,7 +12,7 @@ CREATE TABLE Customer (
     City CHAR(20),
     State CHAR(40),
     ZipCode INT,
-    Telephone CHAR(10),
+    Telephone INT,
     Preferences CHAR(30),
     Rating INT,
     Password CHAR(20),
@@ -20,31 +20,46 @@ CREATE TABLE Customer (
     PRIMARY KEY (CustomerID)
 );
 INSERT INTO Customer VALUES (100100101, 'Alice', 'McKeeny', 'F', 'alice@blah.com', '1988-10-10', 'Chapin Apt 2010,Health Drive', 'Stony Brook', 'NY', 11790, 4314649881, 'cars,life insurance', 8,"");
-
 INSERT INTO Customer VALUES (100100102, 'Bob', 'Wonderwall', 'M', 'bob@blah.com', '1988-06-08', '21 MajorApt, Oak St.', 'NewYork', 'NY', 11700, 4314649882, 'cars, clothing', 5,"");
-
 INSERT INTO Customer VALUES (100100103, 'Elisa', 'Roth', 'F', 'elisa@blah.com', '1992-11-10', 'Corvette Apt, Maple St', 'Stony Brook', 'NY', 11790, 4314649883, 'clothing', 5,"");
- 
 INSERT INTO Customer VALUES (100100104, 'Kelly', 'Mcdonald', 'F', 'kelly@blah.com', '1991-11-11', '54 East Apt, Oak St', 'NewYork', 'NY', 11700, 4314649884, 'clothing,toys', 5,"");
- 
 INSERT INTO Customer VALUES (100100105, 'Wendy', 'Stanley', 'F', 'wendy@blah.com', '1992-08-08', 'MajorApt, Oak St.', 'Stony Brook', 'NY', 11790, 4314649885, 'life insurance', 2,"");
-
 INSERT INTO Customer VALUES (100100106, 'Dennis', 'Ritchie', 'M', 'den@blah.com', '1992-03-02', '43 Corvette Apt, Maple St.', 'NewYork', 'NY', 11700, 4314649886, 'life insurance', 2,"");
-
 INSERT INTO Customer VALUES (100100107, 'Patrick', 'Norris', 'M', 'patnor@blahblah.com', '1992-08-07', 'Chapin Apt 1001,Health Drive', 'Stony Brook', 'NY', 11790, 4314649887, 'cars,clothing', 2,"");
-
 INSERT INTO Customer VALUES (100100108, 'Chuck', 'Stewart', 'M', 'chuck@blah.com', '1991-02-01', '54 East Apt, Oak St.', 'NewYork', 'NY', 11700, 4314649888, 'clothing,life insurance', 2,"");
- 
 INSERT INTO Customer VALUES (100100109, 'Brad', 'Norton', 'M', 'brad@blah.com', '1992-09-01', 'Chapin Apt 2010, Health Drive', 'Stony Brook', 'NY', 11790, 4314649889, 'life insurance', 2,"");
-
 INSERT INTO Customer VALUES (100100110, 'Jeniffer', 'Buffet', 'F', 'jennycool123@blah.com', '1989-08-01', 'Chapin Apt 1223, Health Drive', 'NewYork', 'NY', 11700, 4314649890, 'life insurance', 2,"");
+
+CREATE TABLE Preferences (
+    CustomerID INT,
+    Preference CHAR(30),
+    PRIMARY KEY (CustomerID),
+    FOREIGN KEY (CustomerID)
+        REFERENCES Customer (CustomerID) ON DELETE CASCADE
+);
+
+INSERT INTO Preferences VALUES (100100101, 'cars');
+INSERT INTO Preferences VALUES (100100101, 'life insurance');
+INSERT INTO Preferences VALUES (100100102, 'cars');
+INSERT INTO Preferences VALUES (100100102, 'clothing');
+INSERT INTO Preferences VALUES (100100103, 'clothing');
+INSERT INTO Preferences VALUES (100100104, 'clothing');
+INSERT INTO Preferences VALUES (100100104, 'toys');
+INSERT INTO Preferences VALUES (100100105, 'life insurance');
+INSERT INTO Preferences VALUES (100100106, 'life insurance');
+INSERT INTO Preferences VALUES (100100107, 'cars');
+INSERT INTO Preferences VALUES (100100107, 'clothing');
+INSERT INTO Preferences VALUES (100100108, 'clothing');
+INSERT INTO Preferences VALUES (100100108, 'life insurance');
+INSERT INTO Preferences VALUES (100100109, 'life insurance');
+INSERT INTO Preferences VALUES (100100110, 'life insurance');
 
 
 CREATE TABLE Account (
     CustomerID INT,
     AccountNumber INT,
     AccountCreationDate DATE,
-    CreditCardNum CHAR(16),
+    CreditCardNum INT,
     PRIMARY KEY (AccountNumber),
     FOREIGN KEY (CustomerID)
         REFERENCES Customer (CustomerID) ON DELETE CASCADE
@@ -259,7 +274,7 @@ INSERT INTO Message VALUES (3003, '2011-11-11', 'happy bday!', 'hey u there! Hav
 INSERT INTO Message VALUES (3004, '2011-11-10', 'will be late', 'Hey! I am sorry I wont make it to tonights appointment.Stuck with some work! :(', 100100105, 100100105);
 
 CREATE TABLE Employee (
-    SSN VARCHAR(9),
+    SSN INT
     EmployeeID INT,
     FirstName CHAR(15),
     LastName CHAR(15),
@@ -267,7 +282,7 @@ CREATE TABLE Employee (
     City CHAR(20),
     State CHAR(2),
     ZipCode INT,
-    Telephone CHAR(10),
+    Telephone INT,
     StartDate DATE,
     HourlyRate INT,
     Role CHAR(30),
@@ -279,7 +294,7 @@ INSERT INTO Employee VALUES(111222333, 111221, 'Mike', 'Thomas', '43 Apple Apt,M
 INSERT INTO Employee VALUES(111333222, 111222, 'Jonthan', 'Klaus', '76 PotterApt,Muriel Avenue', 'Stony Brook', 'NY', 11790, 6314651232, '2011-05-05', 20, 'Customer Representative',""); 
 
 CREATE TABLE Manager (
-    SSN VARCHAR(9),
+    SSN INT,
     ManagerID INT,
     FirstName CHAR(15),
     LastName CHAR(15),
@@ -287,7 +302,7 @@ CREATE TABLE Manager (
     City CHAR(20),
     State CHAR(2),
     ZipCode INT,
-    Telephone CHAR(10),
+    Telephone INT,
     StartDate DATE,
     HourlyRate INT,
     Role CHAR(30),

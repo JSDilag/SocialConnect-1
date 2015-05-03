@@ -20,14 +20,19 @@
     </head>
     <body >
         <img src="images/ford2012.jpg"> 
-        <% String Query = "SELECT A.Content FROM Advertisement A WHERE A.ItemName='2012-Mustang'";
+        <% String Query = "A.Content, A.ItemName, A.AdvertisementID FROM Advertisement A WHERE A.ItemName='2012-Mustang'";
            java.sql.ResultSet rs =DBConnection.ExecQuery(Query);
 
            if (rs.next())
-           {  out.print(cs.getString(1)+" ");
-
-
+           {  out.print(rs.getString(1)+" ");
+              request.setParameter("ItemName", rs.getString(2)); 
+              request.setParameter("AdID", rs.getString(3)); 
             }  
+           else
+           {  request.setParameter("ItemName", null);
+                request.setParameter("AdID", null);
+
+            }
         %>                
     </body>   
 </html>
