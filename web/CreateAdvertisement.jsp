@@ -37,7 +37,6 @@
             <h1><b>SocialConnect</b></h1>
             <h2>Create Advertisement</h2>
             <hr>
-            
         </header>
         <form style="width: 50%;">
             <div class="form-group">

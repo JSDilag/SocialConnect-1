@@ -1,7 +1,7 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DBWorks.DBConnection"%>
-<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.ResultSet"%>-->
 
 <!DOCTYPE html>
 <html>
@@ -23,13 +23,6 @@
         <!-- Custom Fonts -->
         <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
@@ -38,34 +31,29 @@
 
     <body>
         
-        <header>
-            <h1>
-                <b>SocialConnect</b>
-            </h1>
-            <hr>
-
-            <ul id="navbar">
-                <li id="home" class="navbar-item"><a href="EmployeeHomepage.jsp">Home</a></li>
-                <li id="messages" class="navbar-item">Messages</li>
-                <li id="circles" class="navbar-item">Circles</li>
-                <li id="advertisements" class="navbar-item">My Advertisements</li>
-                <li id="sales" class="navbar-item">My Transactions</li>
-                <li id="customers" class="navbar-item">Customers</li>
-            </ul>
-
-            <div style="clear: both;"></div>
-
-        </header>
+        <h1>SocialConnect</h1>
+        <h2>Customer Mailing List</h2>
         
-        <%
-            String query = "SELECT C.Email FROM Customer C";
-            java.sql.ResultSet rs = DBConnection.ExecQuery(query);
-            while (rs.next())
-            {
-                out.println(rs.getString(1));
-            }
-        %>
-        
+        <table>
+            <tr>
+                <th>Customer Email Addresses</th>
+            </tr>   
+            <%
+                String query = "SELECT C.Email FROM Customer C";
+                java.sql.ResultSet rs = DBConnection.ExecQuery(query);
+
+                while (rs.next())
+                {
+                    %>
+                    <tr>
+                        <td>
+                            <% out.print(rs.getString(1)); %>
+                        </td>
+                    </tr>
+                    <%
+                }
+            %>
+        </table>
         <button><a href="">Return home</a></button>
     </body>
 

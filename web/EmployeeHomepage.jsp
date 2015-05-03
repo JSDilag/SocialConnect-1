@@ -39,7 +39,6 @@
                 <li id="messages" class="navbar-item">Messages</li>
                 <li id="advertisements" class="navbar-item">My Advertisements</li>
                 <li id="sales" class="navbar-item">My Transactions</li>
-                <!--<li id="customers" class="navbar-item">Customers</li>-->
             </ul>
         </nav>
 
@@ -47,57 +46,56 @@
 
         <!-- Displays the info of the employee -->
         <div id="my-info">
-            <h3>Transactions</h3>
-            <%
-                
-            %>
+            <h3>Profile</h3>
+            <span>ID: <br></span>
+            <span>Name: <br></span>
+            <span>Address: <br></span>
+            <span>Phone Number: <br></span>
+            <span>Start Date: <br></span>
+            <span>Hourly Rate: <br></span>
         </div>
-
-        <!--
-        Left side bar
-        View customers to edit/add/delete
-        Produce a list of customer emails
-        Produce a list of customer item suggestions
-        -->
+        
+        <!-- Division for employee-level transactions  -->
         <div id="employee-abilities">
-            <ul id="buttonlist">
-                <!--<li><button id="" class="buttons" onclick="location.href='CreateAdvertisement.jsp'">Create an Advertisement</button></li>-->
-<!--                <li><button id="" class="buttons">Delete an Advertisement</button></li>-->
-                <!--<li><button id="" class="buttons">Record a Transaction</button></li>-->
-                <!--<li><button id="" class="buttons">Customers</button></li>-->
-                <!--<li><button id="" class="buttons">Customer Mailing List</button></li>-->
-            </ul>
-            <div id="advertisement">
+            <div class="function-border">
+                <span style="border: solid black;">Advertisement functions</span>
+                <br>
                 <button class="buttons" onclick="location.href='CreateAdvertisement.jsp'">Create an Advertisement</button>
-                <h2>Delete an Advertisement</h2>
-                <form>
+                <!--<h2>Delete an Advertisement</h2>-->
+<!--                <form>
                     <div class="form-group">
                         <label for="inputAdID">Enter Advertisement ID to delete</label>
                         <input type="number" class="form-control" id="inputAdID" name="adid">
                     </div>
-                    <button type="submit">Delete Advertisement</button>
-                </form>
+                    <button type="submit" class="buttons">Delete Advertisement</button>
+                </form>-->
+                <button class="buttons" onclick="location.href='DeleteAdvertisement.jsp'">Delete Advertisement</button>
             </div>
-            <div id="transaction">
-                <button id="" class="buttons">Record a Transaction</button>
+            <div class="function-border">
+                <span style="border: solid black;">Transaction functions</span>
+                <br>
+                <button class="buttons" onclick="location.href='RecordATransaction.jsp'">Record a Transaction</button>
             </div>
-            <div id="customers">
-                <button class="buttons">Add Customer</button>
-                <button class="buttons">Edit Customer</button>
-                <form>
+            <div class="function-border">
+                <span style="border: solid black;">Customer functions</span>
+                <br>
+                <button class="buttons" onclick="location.href='CreateCustomer.jsp'">Create Customer</button>
+                <button class="buttons" onclick="location.href='EditCustomer.jsp'">Edit Customer</button>
+                <button class="buttons" onclick="location.href='DeleteCustomer.jsp'">Delete Customer</button>
+<!--                <form>
                     <div class="form-group">
                         <label for="inputCustomerID">Enter Customer ID to delete</label>
                         <input type="number" class="form-control" id="inputCustomerID" name="customerid">
                     </div>
-                    <button type="submit">Delete Customer</button>
-                </form>
+                    <button type="submit" class="buttons">Delete Customer</button>
+                </form>-->
+                <button class="buttons" onclick="location.href='CustomerMailingList.jsp'">Customer Mailing List</button>
+                <button class="buttons" onclick="location.href='CustomerItemSuggestions.jsp'">Customer Item Suggestions</button>
             </div>
         </div>
 
         <footer>
-            <p>
-                &copy;2015 SocialConnect. Steven Liao
-            </p>
+            <p>&copy;2015 SocialConnect. Steven Liao</p>
         </footer>
     </body>
 </html>
