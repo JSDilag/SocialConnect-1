@@ -1,8 +1,8 @@
-
+<!--
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.ResultSet"%>
-
+-->
 <!DOCTYPE html>
 <html>
     
@@ -38,15 +38,25 @@
         
         <a href="EmployeeHomepage.jsp" class="right">Return to homepage</a>
         
+        <form style="width: 50%;">
+            <div class="form-group">
+                <label for="inputCustomerID">Enter Customer ID to produce item suggestions</label>
+                <input type="number" class="form-control" id="inputCustomerID" name="customerid">
+            </div>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+        
         <%
-            String query = "SELECT A.Item_Name, A.Advertisement_Id FROM Advertisement  A  "
-                    + "WHERE A.Employee = ? AND A.Number_Of_Units>0  AND A.Type IN "
-                    + "(SELECT DISTINCT (A.Type) FROM Advertisement A "
-                    + "INNER JOIN Purchase P "
-                    + "INNER JOIN User U ON "
-                    + "A.Advertisement_Id = P.Advertisement AND P.User = U.User_Id WHERE U.User_Id = ? ) ";
-            ResultSet rs = DBConnection.ExecQuery(query);
-            
+            if (request.getParameter("submit") != null)
+            {
+                String query = "SELECT A.Item_Name, A.Advertisement_Id FROM Advertisement  A  "
+                        + "WHERE A.Employee = ? AND A.Number_Of_Units>0  AND A.Type IN "
+                        + "(SELECT DISTINCT (A.Type) FROM Advertisement A "
+                        + "INNER JOIN Purchase P "
+                        + "INNER JOIN User U ON "
+                        + "A.Advertisement_Id = P.Advertisement AND P.User = U.User_Id WHERE U.User_Id = ? ) ";
+                ResultSet rs = DBConnection.ExecQuery(query);
+            }
             
         %>
         

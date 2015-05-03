@@ -36,7 +36,7 @@
         <form style="width: 50%;">
             <div class="form-group">
                 <label for="inputCustomerID">Enter Advertisement ID to delete</label>
-                <input type="number" class="form-control" id="inputCustomer" name="customerid">
+                <input type="number" class="form-control" id="inputCustomerID" name="customerid">
             </div>
             <button>Delete</button>
         </form>

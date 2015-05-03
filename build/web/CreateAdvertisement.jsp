@@ -38,6 +38,9 @@
             <h2>Create Advertisement</h2>
             <hr>
         </header>
+        
+        <a href="EmployeeHomepage.jsp" class="right">Return to homepage</a>
+        
         <form style="width: 50%;">
             <div class="form-group">
                 <label for="inputType">Type</label>

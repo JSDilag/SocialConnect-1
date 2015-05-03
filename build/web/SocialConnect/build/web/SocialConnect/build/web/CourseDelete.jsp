@@ -1,15 +1,11 @@
-<%-- 
-    Document   : CourseDelete
-    Created on : Oct 28, 2014, 11:27:08 PM
-    Author     : Ahmad
---%>
 
+<!--
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
-
+-->
 <!DOCTYPE html>
 <html lang="en">
 

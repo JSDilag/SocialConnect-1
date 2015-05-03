@@ -26,7 +26,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <!--<link href="css/sb-admin.css" rel="stylesheet">-->
+        <link href="css/sb-admin.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
 
     <body>
 
-        <div id="page-wrapper">
+        <div id="wrapper">
 
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -54,7 +54,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="FacultyInformation.jsp">Registration System </a>
+                    <a class="navbar-brand" href="StudentInformation.jsp">Registration System </a>
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -81,9 +81,11 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="FacultyInformation.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                            <a href="StudentInformation.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                         </li>
-
+                        <li>
+                            <a href="CourseSearch.jsp"><i class="fa fa-fw fa-dashboard"></i> Course Search</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -102,7 +104,7 @@
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
-                                    <i class="fa fa-dashboard"></i>  <a href="FacultyInformation.jsp">Dashboard</a>
+                                    <i class="fa fa-dashboard"></i>  <a href="StudentInformation.jsp">Dashboard</a>
                                 </li>
                                 <li class="active">
                                     <i class="fa fa-file"></i> 
@@ -115,44 +117,61 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <h2>Your Course List</h2>
-                            <h6>These are the courses you are
-                                teaching in this semester, you can check the information of the
-                                corresponding course by select the "View" button to check more
-                                information.</h6>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th> Course Code </th>
-                                            <th> Department </th>    
-                                            <th>Course Name</th>
-                                            <th>Operation</th>
+                                            <th> CrsCode </th>
+                                            <th> CrsName </th>    
+                                            <th>DeptID</th>
+                                            <th>ProfName</th>
+                                            <th>Grade</th>
+                                            <th> Operation</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
-                                            String profId = "" + session.getAttribute("login");
-                                            java.sql.Connection conn = null;
+                                            String stuID = session.getAttribute("login").toString();
                                             String Query
-                                                    = "select * from Course where Course.InsNo='"
-                                                    + profId + "'";
+                                                    = "select Course.CrsCode,Course.CrsName,"
+                                                    + " Course.DeptID,Professor.Name,"
+                                                    + " Transcript.Grade from Course,"
+                                                    + " Professor,Transcript where"
+                                                    + " Course.CrsCode=Transcript.CrsCode"
+                                                    + " and Professor.Id=Course.InsNo"
+                                                    + " and Transcript.StudId='" + stuID + "'";
                                             java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
                                             String strGrade = null;
                                             while (rs.next()) {
+                                                strGrade = rs.getString(5);
+                                                if (rs.getString(5).trim().equals("-1")) {
+                                                    strGrade = "N/A";
+                                                }
                                         %>
                                         <tr>
                                             <td > <% out.print(rs.getString(1)); %> </td>
                                             <td > <% out.print(rs.getString(2)); %> </td>
-                                            <td > <% out.print(rs.getString(3));%> </td>
+                                            <td > <% out.print(rs.getString(3)); %> </td>
+                                            <td > <% out.print(rs.getString(4)); %> </td>
+                                            <td > <% out.print(strGrade); %> </td>
                                             <td>
-                                                <input type=button onclick="javascript:
-                                                                window.open('FacultyDetailedCourseInfo.jsp?crscode=<%=rs.getString(1).trim()%>', '_self');
-                                                        return;"
-                                                       value="View and Set Transcript">
+                                                <% if (rs.getString(5).trim().equals("-1")) {%>
+                                                <input type="button" onclick="javascript:if (confirm('Are you sure that you want to delete the course?') == true)
+                                                        {
+                                                            window.open('CourseDelete.jsp?userid=<%=stuID%>&crscode=<%=rs.getString(1)%>', '_self');
+                                                        }
+                                                        ;
+                                                        return;" value="Delete">
+                                                <%} else {
+
+                                                        out.print("No Change");
+
+                                                    }
+
+                                                %>
                                             </td>
                                         </tr>
-                                        <%
-                                            }
+                                        <%                                       }
                                         %>
 
                                     </tbody>
@@ -160,20 +179,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- /.container-fluid -->
+
                 </div>
-                <!-- /.container-fluid -->
+                <!-- /#page-wrapper -->
 
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /#wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+            <!-- jQuery Version 1.11.0 -->
+            <script src="js/jquery-1.11.0.js"></script>
 
-        <!-- jQuery Version 1.11.0 -->
-        <script src="js/jquery-1.11.0.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
 
     </body>
 
