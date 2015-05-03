@@ -29,17 +29,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script>
-             function Editcomment()
-             { if(<%commentIDs%> != null) 
-                {   query="UPDATE Comment SET Content="+request.getParameter("Editcomment")+"WHERE CommentID="+
-                    Integer.parseInt(commentIDs);
-                } 
-               else 
-               {  <%out.print("Error CommentID is null"); %>
-               }
-             }
-        </script>
+
     </head>
 
 
@@ -50,12 +40,21 @@
         int rs;
        String commentIDs = session.getAttribute("commentID").toString(); 
     %>
+    <%@ include file="nav.jsp" 
+    %>
+   <script>
+         function Editcomment()
+         { <%if(commentIDs != null) 
+              {   query="UPDATE Comment SET Content="+request.getParameter("Editcomment")+"WHERE CommentID="+
+                Integer.parseInt(commentIDs);
+              } 
+            else 
+            {  out.print("Error CommentID is null");
+            }
+           %>
+         }
+    </script>
 
-    <body>
-
-      <%@ include file="nav.jsp" 
-
-      %>
 
       <div class="background">
         <div class="innerBackground">

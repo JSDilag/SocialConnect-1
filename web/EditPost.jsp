@@ -29,17 +29,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script>
-             function Editpost()
-             { if(<%postIDs%> != null) 
-                {   query="UPDATE Post SET Content="+request.getParameter("Editpost")+"WHERE PostID="+
-                    Integer.parseInt(postIDs);
-                } 
-               else 
-               {  <%out.print("Error PostID is null"); %>
-               }
-             }
-        </script>
     </head>
 
 
@@ -50,12 +39,22 @@
         int rs;
        String postIDs = session.getAttribute("postID").toString(); 
     %>
-
-    <body>
-
-      <%@ include file="nav.jsp" 
-
-      %>
+    <%@ include file="nav.jsp" 
+    %>
+    <script>
+       function Editpost()
+       { <% if(postIDs != null) 
+            {   query="UPDATE Post SET Content="+request.getParameter("Editpost")+"WHERE PostID="+
+                Integer.parseInt(postIDs);
+            } 
+           else 
+           {  <%out.print("Error PostID is null"); %>
+           }
+          %> 
+       }
+  </script>
+   
+      
 
       <div class="background">
         <div class="innerBackground">

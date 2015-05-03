@@ -52,7 +52,7 @@
                   <tbody>
                   <% String IDs = session.getAttribute("login").toString();
                      int ID = Integer.parseInt(IDs);
-                    String Query = "SELECT A.* FROM Advertisement A WHERE A.Type IN (SELECT C.Preference FROM User_Preference C WHERE C.Id = ?)";
+                    String Query = "SELECT A.* FROM Advertisement A WHERE A.Type IN (SELECT P.Preference FROM Preferences P WHERE P.CustomerId = "+ID")";
 
                     java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
                   

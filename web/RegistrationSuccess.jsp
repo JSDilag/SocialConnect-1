@@ -23,26 +23,26 @@
     <body >
 
         <%  
-            String FirstName = request.getParameterValues("FirstName");
-            String LastName = request.getParameterValues("LastName");
-            String Sex = request.getParameterValues("Sex");
-            String Email = request.getParameterValues("Email");
-            String DOB = request.getParameterValues("DOB");
-            String Address = request.getParameterValues("Address");
-            String City = request.getParameterValues("City");
-            String State = request.getParameterValues("State");
-            String ZipCode = request.getParameterValues("ZipCode");
-            String Telephone = request.getParameterValues("Telephone");
-            String Password = request.getParameterValues("Password");
-            String CreditCardNum = request.getParameterValues("CreditCardNum");
+            String FirstName = request.getParameter("FirstName");
+            String LastName = request.getParameter("LastName");
+            String Sex = request.getParameter("Sex");
+            String Email = request.getParameter("Email");
+            String DOB = request.getParameter("DOB");
+            String Address = request.getParameter("Address");
+            String City = request.getParameter("City");
+            String State = request.getParameter("State");
+            String ZipCode = request.getParameter("ZipCode");
+            String Telephone = request.getParameter("Telephone");
+            String Password = request.getParameter("Password");
+            String CreditCardNum = request.getParameter("CreditCardNum");
             if(FirstName != null && LastName != null && Sex != null && Email != null && 
                 DOB != null && Address != null && City != null && State != null &&
                 ZipCode != null && Telephone != null && Password != null && CreditCardNum != null)
-            {    String Query = "INSERT INTO Customer VALUES (100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "                     +Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+ 1  +", "+Password)" ;
+            {    String Query = "INSERT INTO Customer VALUES ("+100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "                     +Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+ 1  +", "+Password+")" ;
                 java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
-                Query = "INSERT INTO Account VALUES ("+ID+", "+99910100+", '2015-05-07', "+CreditCardNum+")";
+                Query = "INSERT INTO Account VALUES ("+100100101+", "+99910100+", '2015-05-07', "+CreditCardNum+")";
                 DBConnection.ExecQuery(Query);
-                QUery= "INSERT INTO HasAccount ("+ID", "+99910100+")";
+                QUery= "INSERT INTO HasAccount ("+100100101+", "+99910100+")";
                 DBConnection.ExecQuery(Query);
                 String select[] = request.getParameterValues("Preferences"); 
                 if (select != null && select.length != 0) 

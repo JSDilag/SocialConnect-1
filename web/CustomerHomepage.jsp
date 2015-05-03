@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,21 +27,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script> 
-            function EditComment(CommentID)
-             { if(CommentID != null) 
-                {   session.setAttribute("commentID", CommentID);
-                    response.sendRedirect("EditComment.jsp");
-                } 
-             }
-            function EditPost(PostID)
-             { if(PostID != null) 
-                {   session.setAttribute("postID", PostID);
-                    response.sendRedirect("EditPost.jsp");
-                } 
-             }
-        </script>    
+        <script src="js/bootstrap.min.js"></script>  
     </head>
 
 
@@ -51,6 +37,44 @@
         String Query;
         java.sql.ResultSet rs;
     %>
+    <script> 
+        function EditComment(CommentID)
+         { <% if(CommentID != null) 
+            {   session.setAttribute("commentID", CommentID);
+                response.sendRedirect("EditComment.jsp");
+            }
+            %> 
+         }
+        function EditPost(PostID)
+         { <% if(PostID != null) 
+            {   session.setAttribute("postID", PostID);
+                response.sendRedirect("EditPost.jsp");
+            }
+            %> 
+         }
+        function WritePost()
+         {  <% DBConnection.ExecQuery("INSERT INTO Post VALUES (6939, '2015-05-07', "+request.getParameter("MyPost")+", 0, "+ID+", 6900)");
+               DBConnection.ExecQuery("INSERT INTO Contains VALUES (6900, 6939)");
+               DBConnection.ExecQuery("INSERT INTO Writes VALUES (6939, "+ ID +")");
+                response.sendRedirect("CustomerHomepage.jsp");
+             %>   
+             alert("Post written");
+         } 
+         function LikesPost(x)
+         {  <% DBConnection.ExecQuery("INSERT INTO LikesPost VALUES ("+>% x <% +", " +>%ID<% +")";
+                response.sendRedirect("CustomerHomepage.jsp");
+             %>   
+             alert("Post Liked");
+         }    
+         function LikesComment(x)
+         {  <% DBConnection.ExecQuery("INSERT INTO LikesComment VALUES ("+>% x <% +", " +>%ID<% +")";
+                response.sendRedirect("CustomerHomepage.jsp");
+             %>   
+             alert("Comment Liked");
+         }     
+    </script>  
+
+
 
     <body>
 
@@ -125,7 +149,7 @@
               <div class="col-xs-2"> 
                 <div class="col-sm-10 col-sm-offset-2">
                     <a href="CustomerHomepage.jsp" >
-                        <input id="writePost" name="writePost" type="submit" value="Post" class="btn btn-primary" >
+                        <input id="writePost" name="writePost" type="submit" value="Post" class="btn btn-primary" onclick="WritePost()">
                     </a>
                 </div>    
               </div>

@@ -36,7 +36,6 @@
     <% String IDs = session.getAttribute("login").toString();
       int ID = Integer.parseInt(IDs);
         String Query;
-        java.sql.ResultSet rs;
        String circleIDs= request.getParameter("circleID"); 
 
        String circleName= request.getParameter("circleName");
@@ -57,8 +56,11 @@
               <%  if(circleIDs != null && circleName != null && circleType !=null)
                     {   int circleID = Integer.parseInt(circleIDS);
                         Query="INSERT INTO Circle VALUES ("+circleID+", '"+circleName+"', '"+circleType+"', "+ID+")";
-                        rs= DBConnection.ExecQuery(Query);
+                        DBConnection.ExecQuery(Query);
                         out.print("Circle created");
+                        DBConnection.ExecQuery("INSERT INTO Owns VALUES ("+circleID+", "+ID+")");
+                        DBConnection.ExecQuery("INSERT INTO CircleMembership VALUES ("+ID+", "+circleID+")");
+
                     }
                   else
                   {   out.print("One or more fields are missing");
