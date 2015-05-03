@@ -87,6 +87,7 @@
                             </div>
                             <div class="form-group">                            
                                 <h4 style="display:inline;">CreditCardNumber </h4>
+                                <input name="CreditCardNum" type="text" class="form-control input-lg" placeholder="e.g. 4123132454476550" >
                             </div>
                             <div class="form-group">   
                                 <h4 style="display:inline;">Preferences </h4>
