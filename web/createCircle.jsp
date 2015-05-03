@@ -31,19 +31,15 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-
-<body>
-    <% String IDs = session.getAttribute("login").toString();
-      int ID = Integer.parseInt(IDs);
-        String Query;
-       String circleIDs= request.getParameter("circleID"); 
-
-       String circleName= request.getParameter("circleName");
-       String circleType= request.getParameter("circleType");
-    %>
-
     <body>
+      <% String IDs = session.getAttribute("login").toString();
+        int ID = Integer.parseInt(IDs);
+          String Query;
+         String circleIDs= request.getParameter("circleID"); 
 
+         String circleName= request.getParameter("circleName");
+         String circleType= request.getParameter("circleType");
+      %>
       <%@ include file="nav.jsp" 
 
       %>

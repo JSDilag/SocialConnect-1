@@ -31,8 +31,6 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-
-<body>
     <% String IDs = session.getAttribute("login").toString();
         int ID = Integer.parseInt(IDs);
         String Query;

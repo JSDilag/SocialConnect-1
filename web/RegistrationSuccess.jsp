@@ -42,7 +42,7 @@
                 java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
                 Query = "INSERT INTO Account VALUES ("+100100101+", "+99910100+", '2015-05-07', "+CreditCardNum+")";
                 DBConnection.ExecQuery(Query);
-                QUery= "INSERT INTO HasAccount ("+100100101+", "+99910100+")";
+                Query= "INSERT INTO HasAccount ("+100100101+", "+99910100+")";
                 DBConnection.ExecQuery(Query);
                 String select[] = request.getParameterValues("Preferences"); 
                 if (select != null && select.length != 0) 
