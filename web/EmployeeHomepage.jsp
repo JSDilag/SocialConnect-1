@@ -1,9 +1,9 @@
 
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet" %>
--->
+
 
 <html lang="en">
     <head>
@@ -39,6 +39,7 @@
                 <li id="messages" class="navbar-item">Messages</li>
                 <li id="advertisements" class="navbar-item">My Advertisements</li>
                 <li id="sales" class="navbar-item">My Transactions</li>
+                <li class="navbar-item">Log out</li>
             </ul>
         </nav>
 
@@ -47,12 +48,43 @@
         <!-- Displays the info of the employee -->
         <div id="my-info">
             <h3>Profile</h3>
-            <span>ID: <br></span>
-            <span>Name: <br></span>
-            <span>Address: <br></span>
-            <span>Phone Number: <br></span>
-            <span>Start Date: <br></span>
-            <span>Hourly Rate: <br></span>
+            <span>ID: 
+                <%
+                    String ID = (String) session.getAttribute("login");
+                    out.print(ID); 
+                %><br>
+            </span>
+            <span>
+                Name: 
+                <%
+                    String query = "SELECT * FROM Employee E "
+                            + "WHERE E.EmployeeID = " + ID + ";";
+                    java.sql.ResultSet rs = DBConnection.ExecQuery(query);
+                    if(rs.next())
+                        out.print(rs.getString("FirstName") + " " + rs.getString("LastName"));
+                %><br>
+            </span>
+            <span>Address: 
+                <%
+                    out.print(rs.getString("Address") + ", " + rs.getString("City") +
+                            rs.getString("State") + ", " + rs.getString("ZipCode"));
+                %><br>
+            </span>
+            <span>Phone Number: 
+                <%
+                    out.print(rs.getString("Telephone"));
+                %><br>
+            </span>
+            <span>Start Date: 
+                <%
+                    out.print(rs.getString("StartDate"));
+                %><br>
+            </span>
+            <span>Hourly Rate: $
+                <%
+                    out.print(rs.getString("HourlyRate"));
+                %><br>
+            </span>
         </div>
         
         <!-- Division for employee-level transactions  -->

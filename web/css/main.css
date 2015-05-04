@@ -30,3 +30,33 @@
 	height: 100%;
 	width: 100%;
 }
+
+/*for CustomerHomepage.jsp */
+.innerBackground {
+	height: 80%;
+	width: 80%;
+	margin: auto;
+	background-color: white;
+}
+
+.AdBox {
+	width: 200px;
+}
+input[type="post"].input-lg {
+	height: 150px;
+	padding: 1px;
+	padding-bottom: 0px;
+}
+
+.PostBox {
+	background-color: yellow;
+}
+.btn-primary {
+	padding: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.CommentBox {
+	background-color: white;
+}

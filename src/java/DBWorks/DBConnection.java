@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static org.apache.tomcat.jni.User.username;
+//import static org.apache.tomcat.jni.User.username;
 
 /**
  *
@@ -19,9 +19,9 @@ import static org.apache.tomcat.jni.User.username;
  */
 public class DBConnection {
     static String mysJDBCDriver = "com.mysql.jdbc.Driver";
-    static String url = "jdbc:mysql://localhost:3306/studentreg";
-    static String username = "root";
-    static String password = "";
+    static String url = "jdbc:mysql://mysql2.cs.stonybrook.edu:3306/jdilag?user=jdilag";
+    static String username = "jdilag";
+    static String password = "108613685";
     static java.sql.Connection myConnection = null;
                    
     static PreparedStatement myPreparedStatement = null;

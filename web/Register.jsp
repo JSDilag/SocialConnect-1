@@ -85,17 +85,24 @@
                                 <h4 style="display:inline;">Telephone </h4>
                                 <input name="Telephone" type="text" class="form-control input-lg" placeholder="e.g. 4314649886" >
                             </div>
+                            <div class="form-group">                            
+                                <h4 style="display:inline;">CreditCardNumber </h4>
+                                <input name="CreditCardNum" type="text" class="form-control input-lg" placeholder="e.g. 4123132454476550" >
+                            </div>
                             <div class="form-group">   
                                 <h4 style="display:inline;">Preferences </h4>
                                 <div style="padding-left: 30px;">
                                     <label class="checkbox">
-                                        <input type="checkbox" value="Cars">Cars
+                                        <input type="checkbox" name="Preferences" value="cars">cars
                                     </label>     
                                     <label class="checkbox">
-                                        <input type="checkbox" value="LifeInsurance">Life Insurance
+                                        <input type="checkbox" name="Preferences" value="life insurance">life insurance
                                     </label>   
                                     <label class="checkbox">
-                                        <input type="checkbox" value="Clothing">Clothing
+                                        <input type="checkbox" name="Preferences" value="clothing">clothing
+                                    </label> 
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="Preferences" value="toys">toys
                                     </label>   
                                 </div>    
 
