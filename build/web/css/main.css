@@ -1,0 +1,62 @@
+.login {
+	background-color: lightblue;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	border-color: black;
+	border-style: line;
+}
+.slideshow {
+	width: 500px;
+	height: 300px;
+
+}
+.slideshow img {
+	height: 100%;
+	width: 100%;
+	padding-left: 30px;
+}
+
+.topBar {
+	background-color: lightblue;
+	width: 100%;
+	height: 30px;
+
+}
+
+.background {
+	background-color: lightblue;
+	height: 100%;
+	width: 100%;
+}
+
+/*for CustomerHomepage.jsp */
+.innerBackground {
+	height: 80%;
+	width: 80%;
+	margin: auto;
+	background-color: white;
+}
+
+.AdBox {
+	width: 200px;
+}
+input[type="post"].input-lg {
+	height: 150px;
+	padding: 1px;
+	padding-bottom: 0px;
+}
+
+.PostBox {
+	background-color: yellow;
+}
+.btn-primary {
+	padding: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.CommentBox {
+	background-color: white;
+}
