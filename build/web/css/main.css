@@ -1,3 +1,6 @@
+body {
+    height: 100%;
+}
 .login {
 	background-color: lightblue;
 	padding-top: 10px;
@@ -39,9 +42,6 @@
 	background-color: white;
 }
 
-.AdBox {
-	width: 200px;
-}
 input[type="post"].input-lg {
 	height: 150px;
 	padding: 1px;
@@ -59,4 +59,13 @@ input[type="post"].input-lg {
 
 .CommentBox {
 	background-color: white;
+}
+
+.Comments {
+    background-color: #E8D830;
+    border-style: solid;
+}
+.posts {
+    background-color: #C6F01F;
+    border-style: solid;
 }

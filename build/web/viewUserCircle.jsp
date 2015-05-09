@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,6 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -33,59 +32,32 @@
 
 
 <body>
-    <% String IDs = session.getAttribute("login").toString();
-       int ID = Integer.parseInt(IDs);
+    <% String ID = session.getAttribute("login").toString();
         String Query;
         java.sql.ResultSet rs;
-        String userIDs= request.getParameter("userID"); 
+        String userID= request.getParameter("userID"); 
     %>
 
-    <body>
+   
 
-      <%@ include file="nav.jsp" 
+      <jsp:include page="<%="nav"+".jsp"%>"/>
 
-      %>
 
       <div class="background">
         <div class="innerBackground">
           <div class="container">
-            <br><br>
-            View a user's circles based on userID
-            <% if(userIDs != null)
-               { %>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th> CircleID </th>
-                                <th>CircleName </th>
-                                <th> CIrcleType </th>                              
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <%      int userID = Integer.parseInt(userIDs);
-                                Query="SELECT C.CircleID, C.CircleName, C.Type FROM CircleMembership CM, Circle C WHERE CM.CustomerID="+userID+" AND CM.CircleID=C.CircleID";
-                                rs= DBConnection.ExecQuery(Query);
-                                while(rs.next())
-                                {
-                                   %>
-                                  <tr>
-                                     <td > <% out.print(rs.getString(1)); %> </td>
-                                     <td > <% out.print(rs.getString(2)); %> </td>
-                                     <td > <% out.print(rs.getString(3)); %> </td>                                       
-                                  </tr>
-                                   <%         
-                                }                                            
-                          %> 
-                        </tbody>
-                    </table>
-                </div>   
-             <% }  
-                 else
-                  {  
-                      out.print("\nuserID field is missing");
-                  }  
-              %>      
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+
+             <form class="col-md-12 center-block" action="viewUserCircleQuery.jsp" method="post">
+                        <div class="form-group">
+                            <input name="userID" type="text" class="form-control input-lg" placeholder="userID" autofocus>
+                        </div>
+                        
+                        <div class="form-group">                       
+                            <button class="btn btn-primary btn-lg btn-block">Create Circle</button>                         
+                        </div>  
+             </form>       
             <a href="CustomerHomepage.jsp">Return</a>  
           </div>
         </div>

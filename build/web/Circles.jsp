@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +24,6 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -38,38 +37,24 @@
         java.sql.ResultSet rs;
     %>
 
-    <body>
+ 
 
-    <%@ include file="nav.jsp" %>
+    <jsp:include page="<%="nav"+".jsp"%>"/>
 
 <div class="background">
   <div class="innerBackground">
+    <br><br><br><br><br>  
+                                 
+                                    
     <div class="container">
       <br><br>
       <div class="row">  
-        <div class="col-xs-2">
-          <center>
-            <input name="circleID" type="circle" id="circleIDBox" class="form-control input-lg" placeholder="CircleID">
-          </center>
-        </div>
-        <div class="col-xs-2">
-          <center>
-            <input name="userID" type="circle" id="userIDBox" class="form-control input-lg" placeholder="userID">
-          </center>
-        </div>   
-        <div class="col-xs-2">
-          <center>
-            <input name="circleName" type="circle" id="circleNameBox" class="form-control input-lg" placeholder="CircleName">
-          </center>
-        </div>    
-        <div class="col-xs-2">
-          <center>
-            <input name="circleType" type="circle" id="circleTypeBox" class="form-control input-lg" placeholder="CircleType">
-          </center>
-        </div>          
-      </div>
+        
+                                     
+      </div>    
+  
 
-    <div class="row">
+      <div class="row">
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
               <tbody> 
@@ -88,7 +73,7 @@
                           <input id="renameCircleBtn" type="submit" value="Rename Circle" class="btn btn-primary" >
                         </a>  
                     </td>    
-                    <td> Renames circleName of circle based on the circleID and circleName fields 
+                    <td> Renames a circle's name
                     </td>    
                    </tr>
                    <tr>
@@ -97,7 +82,7 @@
                           <input id="deleteCircleBtn" type="submit" value="Delete Circle" class="btn btn-primary" >
                         </a>  
                       </td>
-                      <td>            Deletes circle based on the circleID field
+                      <td>            Deletes a circle
                       </td>
                    </tr>    
                    <tr>
@@ -107,7 +92,7 @@
                         </a>  
                       </td>
                       <td>
-                         Add userID to circle that's based on the circleID field
+                         Add user to circle
                       </td>
                    </tr>    
                    <tr>
@@ -116,7 +101,7 @@
                           <input id="removeFromCircleBtn" type="submit" value="Remove From Circle" class="btn btn-primary" >
                         </a>  
                        </td>
-                       <td>   Add userID to circle that's based on the circleID field                         
+                       <td>   Remove user from circle                      
                        </td>
                    </tr>    
  
@@ -151,12 +136,12 @@
               </tbody>
           </table>
         </div> 
-    </div>
-     <div class="row">
+      </div>
+      <div class="row">
          <center>
              <h2>My Circles</h2>
          </center>
-     </div>   
+      </div>   
       <div class="row">
           <div class="table-responsive">
               <table class="table table-bordered table-hover">
@@ -188,7 +173,9 @@
       </div>
       <a href="CustomerHomepage.jsp">Return</a>    
     </div>
+   
   </div>
+                             
 </div>
 
 

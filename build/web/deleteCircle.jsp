@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,39 +30,40 @@
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
-
+    
+    <body>
     <% String IDs = session.getAttribute("login").toString();
         int ID = Integer.parseInt(IDs);
         String Query;
-        int rs;
-       String circleIDs = request.getParameter("circleID"); 
+        java.sql.ResultSet rs;
+       String circleID = request.getParameter("circleID"); 
         
        String circleName= request.getParameter("circleName");
        String circleType= request.getParameter("circleType");
     %>
 
-    <body>
+    
 
-      <%@ include file="nav.jsp" 
+      <jsp:include page="<%="nav"+".jsp"%>"/>
 
-      %>
 
       <div class="background">
         <div class="innerBackground">
           <div class="container">
-            <br><br>
+                        <br><br><br><br><br>
+
             Deletes circle based on the circleID field
-              <%  if(circleIDs != null)
-                    {  
-                        int circleID = Integer.parseInt(circleIDs);
-                        Query="DELETE FROM Circle WHERE circleID="+circleID; 
-                        rs= DBConnection.ExecQuery(Query);
-                        out.print("Circle deleted");
-                    }
-                  else
-                  {   out.print("One or more fields are missing");
-                  }  
-              %>      
+                        <br><br><br><br><br>
+
+               <form class="col-md-12 center-block" action="deleteCircleQuery.jsp" method="post">
+                        <div class="form-group">
+                            <input name="circleID" type="text" class="form-control input-lg" placeholder="circleID" autofocus>
+                        </div>
+                       
+                        <div class="form-group">                       
+                            <button class="btn btn-primary btn-lg btn-block">Create Circle</button>                         
+                        </div>  
+                    </form>     
             <a href="CustomerHomepage.jsp">Return</a>  
           </div>
         </div>

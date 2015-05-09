@@ -1,13 +1,13 @@
-<!--<%@page import="DBWorks.DBConnection"%>
+<%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Superman Shirt</title>
+    <title>Ford 2012</title>
     <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
     <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon">
     <meta name="generator" content="Bootply" />
@@ -18,21 +18,27 @@
     <![endif]-->
         <link href="css/main.css" rel="stylesheet">
     </head>
-    <body >
-        <img src="images/supermanshirt.jpg"> 
+    <body style="background-color: #E8D830">
+       <jsp:include page="<%="nav"+".jsp"%>"/>
+       <img style="height: 50%;" src="images/supermanshirt.jpg"> <br>
         <% String Query = "SELECT A.Content, A.ItemName, A.AdvertisementID FROM Advertisement A WHERE A.ItemName='Superman Shirt'";
            java.sql.ResultSet rs =DBConnection.ExecQuery(Query);
-
+           
            if (rs.next())
            {  out.print(rs.getString(1)+" ");
-              request.setParameter("ItemName", rs.getString(2)); 
-              request.setParameter("AdID", rs.getString(3)); 
+              session.setAttribute("ItemName", rs.getString(2)); 
+              session.setAttribute("AdID", rs.getString(3)); 
             }  
            else
-           {  request.setParameter("ItemName", null);
-                request.setParameter("AdID", null);
-
+           {  session.setAttribute("ItemName", null);
+              session.setAttribute("AdID", null);
             }
-        %>                
-    </body>
+        %> 
+        <br>
+        <a href="Sale.jsp">
+             <input  name="Buy" type="submit" value="Buy" class="btn btn-primary">
+        </a>
+        &nbsp &nbsp &nbsp &nbsp
+        <a href="CustomerHomepage.jsp">Return</a>                                        
+    </body>   
 </html>

@@ -1,9 +1,8 @@
 
-<!--
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,15 +24,15 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script> 
     </head>
 
 
-<body>
-
+<body style="background-color: #E8D830">
+    <jsp:include page="<%="nav"+".jsp"%>"/>
+    <br><br><br><Br><br><br>
           <div class="table-responsive">
               <table class="table table-bordered table-hover">
                   <thead>
@@ -52,7 +51,7 @@
                   <tbody>
                   <% String IDs = session.getAttribute("login").toString();
                      int ID = Integer.parseInt(IDs);
-                    String Query = "SELECT A.* FROM Advertisement A WHERE A.Type IN (SELECT P.Preference FROM Preferences P WHERE P.CustomerId = "+ID")";
+                    String Query = "SELECT A.* FROM Advertisement A WHERE A.Type IN (SELECT P.Preference FROM Preferences P)";
 
                     java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
                   

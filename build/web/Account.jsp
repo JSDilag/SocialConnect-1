@@ -1,9 +1,8 @@
 
-<!--
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,15 +24,27 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script> 
     </head>
 
 
-<body>
-
+    <body>
+        <jsp:include page="<%="nav"+".jsp"%>"/>
+        <br><br><br><br><br>
+        <h4>Accounts: </h4>
+        <%      String ID = session.getAttribute("login").toString();
+                String Query = "SELECT * FROM HasAccount WHERE CustomerID="+ID;
+                    java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
+                    while(rs.next())
+                    {out.println("        "+rs.getString(2));
+                    %> <br>
+                   <% }
+                    %> <br>
+    <center>
+        <h3>Account History </h3>
+    </center>
           <div class="table-responsive">
               <table class="table table-bordered table-hover">
                   <thead>
@@ -42,15 +53,14 @@
                           <th>DateTime </th>
                           <th> AdvertisementID </th>    
                           <th> Quantity </th>  
-                          <th> AccountNumber </th>  
-                          <th> TotalPrice </th>                            
+                          <th> AccountNumber </th>                         
                       </tr>
                   </thead>
                   <tbody>
-                  <% String IDs = session.getAttribute("login").toString();
-                     int ID = Integer.parseInt(IDs);
-                    String Query = "SELECT S.* FROM HasAccount H, Sale S WHERE H.CustomerID="+ID+" AND H.AccountNumber=S.AccountNumber";
-                    java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
+                  <% 
+               
+                   Query = "SELECT S.* FROM HasAccount H, Sale S WHERE H.CustomerID="+ID+" AND H.AccountNumber=S.AccountNumber";
+                    rs = DBConnection.ExecQuery(Query);
                   
                           while(rs.next())
                           {
@@ -60,8 +70,7 @@
                                <td > <% out.print(rs.getString(2)); %> </td>
                                <td > <% out.print(rs.getString(3)); %> </td>      
                                <td > <% out.print(rs.getString(4)); %> </td>  
-                               <td > <% out.print(rs.getString(5)); %> </td>  
-                               <td > <% out.print(rs.getString(6)); %> </td><br>                                   
+                               <td > <% out.print(rs.getString(5)); %> </td><br>                                   
                             </tr>
                              <%         
                           }                                            
@@ -70,10 +79,6 @@
               </table>
           </div>  
           <a href="CustomerHomepage.jsp">Return</a>
-
-  <body>
-
-
-  </body>
+    </body>
 
 </html>

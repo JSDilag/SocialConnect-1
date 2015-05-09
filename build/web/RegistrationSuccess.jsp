@@ -1,9 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
 
--->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +21,8 @@
     </head>
     <body >
 
-        <%  
+        <%  String ID = "0";
+            String Acc = "0";
             String FirstName = request.getParameter("FirstName");
             String LastName = request.getParameter("LastName");
             String Sex = request.getParameter("Sex");
@@ -38,25 +38,51 @@
             if(FirstName != null && LastName != null && Sex != null && Email != null && 
                 DOB != null && Address != null && City != null && State != null &&
                 ZipCode != null && Telephone != null && Password != null && CreditCardNum != null)
-            {    String Query = "INSERT INTO Customer VALUES ("+100100101 +", "+FirstName+", "+LastName+", "+Sex+", "+Email+", "+DOB+", "                     +Address+", "+City+", "+State+", "+ZipCode+", "+Telephone+", "+ 1  +", "+Password+")" ;
-                java.sql.ResultSet rs = DBConnection.ExecQuery(Query);
-                Query = "INSERT INTO Account VALUES ("+100100101+", "+99910100+", '2015-05-07', "+CreditCardNum+")";
-                DBConnection.ExecQuery(Query);
-                Query= "INSERT INTO HasAccount ("+100100101+", "+99910100+")";
-                DBConnection.ExecQuery(Query);
+            {    java.sql.ResultSet js = DBConnection.ExecQuery("SELECT MAX(CustomerID) FROM CUstomer");
+       
+                if(js.next())
+                    ID =  js.getString(1);
+                 java.sql.ResultSet ds = DBConnection.ExecQuery("SELECT MAX(AccountNumber) FROM Account");
+               
+                if(js.next())
+                    Acc =  ds.getString(1); 
+                int newID = Integer.parseInt(ID)+1;
+                int newAcc = Integer.parseInt(Acc)+1;
+                String Query = "INSERT INTO Customer VALUES ("+newID +", '"+FirstName+"', '"+LastName+"', '"+Sex+"', '"+Email+"', '"+DOB+"', '"                  
+                        +Address+"', '"+City+"', '"+State+"', "+ZipCode+", "+Telephone+", "+ 1  +", '"+Password+"')" ;
+                int er = DBConnection.ExecUpdateQuery(Query);
+                if(er == 0)
+                {   out.print("Error with field(s)");
+                %> <a href="index.html">Return</a>  
+                <%
+                }
+                Query = "INSERT INTO Account VALUES ("+newID+", "+newAcc+", '2015-05-07', "+CreditCardNum+")";
+                DBConnection.ExecUpdateQuery(Query);
+                Query= "INSERT INTO HasAccount VALUES ("+newID+", "+newAcc+")";
+                DBConnection.ExecUpdateQuery(Query);
                 String select[] = request.getParameterValues("Preferences"); 
                 if (select != null && select.length != 0) 
                   {  for (int i = 0; i < select.length; i++) 
-                     {   DBConnection.ExecQuery("INSERT INTO Preferences VALUES ("+ID+", "+select[i]+")");
+                     {   DBConnection.ExecUpdateQuery("INSERT INTO Preferences VALUES ("+newID+", '"+select[i]+"')");
+                     
                      }
                   }
-            }        
-        %>
-        <div class="alert alert-success">
-            <center>
-                <h4>Well done! Registration was successful.</h4>
-                <h6> <a href="index.html">Return</a></h6>
-            </center>
-        </div>
+        %>  
+            <div class="alert alert-success">
+                <center>
+                    <h4>Well done! Registration was successful. ID is <%=newID%></h4>
+                    
+                    <h6> <a href="index.html">Return</a></h6>
+                </center>
+            </div>
+        <%  }  
+            else 
+            {    
+                %>  <h3> Error one or more fields missing </h3>
+                    <h6> <a href="index.html">Return</a></h6>
+            <% 
+            ;} 
+            %>
+
     </body>
 </html>

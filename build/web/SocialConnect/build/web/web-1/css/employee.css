@@ -1,0 +1,117 @@
+
+/* ----- EMPLOYEE HOMEPAGE ----- */
+
+html
+{
+    background-color: darkgreen;
+}
+
+body
+{
+    background-color: white;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 2% 2%;
+    width: 80%;
+    height: 100%;
+}
+
+header
+{
+    background-color: white;
+    font-size: 50px;
+    color: black;
+    padding: 20px;
+}
+
+nav
+{
+}
+
+#navbar
+{
+    list-style-type: none;
+}
+
+.navbar-item
+{
+    background-color: whitesmoke;
+    color: black;
+    display: inline;
+    float: left;
+    font-size: 20px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+}
+
+footer
+{
+    border-top: solid black;
+    background-color: white;
+    clear: both;
+    font-size: 10px;
+    bottom: 0;
+    margin: 0 auto;
+    position: absolute;
+}
+
+#my-info
+{
+    background-color: whitesmoke;
+    float: left;
+    margin-right: 10px;
+    padding: 10px;
+    width: 30%;
+}
+
+#employee-abilities
+{
+    background-color: whitesmoke;
+    float: left;
+    padding: 10px;
+    width: 60%;
+}
+
+#buttonlist
+{
+    list-style-type: none;
+}
+
+.buttons
+{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.function-border
+{
+    border: solid black;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.right
+{
+    float: right;
+}
+
+/*----- Forms -----*/
+
+form
+{
+    background-color: white;
+    color: black;
+}
+
+/* ----- Tables ----- */
+
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td
+{
+    padding: 5px;
+}

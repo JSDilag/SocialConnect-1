@@ -56,14 +56,14 @@
                         if (deleted <= 0)
                         {
                             out.println("<script type=\"text/javascript\">\n"
-                                    + "alert('The advertisement ID is invalid.');\n"
+                                    + "alert('The customer ID is invalid.');\n"
                                     + "</script>");
                         } else
                         {
                             out.println("<script type=\"text/javascript\">\n"
-                                    + "boolean b = confirm('Customer has been deleted."
-                                    + "Click OK to redirect to homepage and Cancel otherwise.);\n"
-                                    + "if (b) location = EmployeeHomepage.jsp\n"
+                                    + "var b = confirm('Customer has been deleted. "
+                                    + "Click OK to redirect to homepage and Cancel otherwise.');\n"
+                                    + "if (b) location = \"EmployeeHomepage.jsp\";\n"
                                     + "</script>");
                         }
                     } else

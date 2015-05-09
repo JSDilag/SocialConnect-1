@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/login.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/css/main.css</file>
             <file>file:/Users/stevenliao/Desktop/SocialConnect/web/EmployeeHomepage.jsp</file>
-            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/CreateAdvertisement.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/Help.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/CreateCustomer.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/likePost.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/Account.jsp</file>
             <file>file:/Users/stevenliao/Desktop/SocialConnect/web/index.html</file>
-            <file>file:/Users/stevenliao/Desktop/SocialConnect/src/java/DBWorks/DBConnection.java</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/EditCustomer.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/Register.jsp</file>
             <file>file:/Users/stevenliao/Desktop/SocialConnect/web/CustomerHomepage.jsp</file>
+            <file>file:/Users/stevenliao/Desktop/SocialConnect/web/EditThisCustomer.jsp</file>
         </group>
     </open-files>
 </project-private>

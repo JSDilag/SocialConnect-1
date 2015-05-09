@@ -36,6 +36,7 @@ nav
 .navbar-item
 {
     background-color: whitesmoke;
+    border: 1px solid black;
     color: black;
     display: inline;
     float: left;
@@ -58,15 +59,17 @@ footer
 #my-info
 {
     background-color: whitesmoke;
+    border: 1px solid black;
     float: left;
     margin-right: 10px;
     padding: 10px;
-    width: 30%;
+    width: 35%;
 }
 
 #employee-abilities
 {
     background-color: whitesmoke;
+    border: 1px solid black;
     float: left;
     padding: 10px;
     width: 60%;
@@ -85,9 +88,9 @@ footer
 
 .function-border
 {
-    border: solid black;
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .right

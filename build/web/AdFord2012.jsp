@@ -1,7 +1,7 @@
-<!--<%@page import="DBWorks.DBConnection"%>
+<%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,21 +18,27 @@
     <![endif]-->
         <link href="css/main.css" rel="stylesheet">
     </head>
-    <body >
-        <img src="images/ford2012.jpg"> 
-        <% String Query = "A.Content, A.ItemName, A.AdvertisementID FROM Advertisement A WHERE A.ItemName='2012-Mustang'";
+    <body style="background-color: #E8D830">
+       <jsp:include page="<%="nav"+".jsp"%>"/>
+       <img style="width: 50%;" src="images/ford2012.jpg"> <br>
+        <% String Query = "SELECT A.Content, A.ItemName, A.AdvertisementID FROM Advertisement A WHERE A.ItemName='2012-Mustang'";
            java.sql.ResultSet rs =DBConnection.ExecQuery(Query);
-
+           
            if (rs.next())
            {  out.print(rs.getString(1)+" ");
-              request.setParameter("ItemName", rs.getString(2)); 
-              request.setParameter("AdID", rs.getString(3)); 
+              session.setAttribute("ItemName", rs.getString(2)); 
+              session.setAttribute("AdID", rs.getString(3)); 
             }  
            else
-           {  request.setParameter("ItemName", null);
-                request.setParameter("AdID", null);
-
+           {  session.setAttribute("ItemName", null);
+              session.setAttribute("AdID", null);
             }
-        %>                
+        %> 
+        <br>
+        <a href="Sale.jsp">
+             <input  name="Buy" type="submit" value="Buy" class="btn btn-primary">
+        </a>
+        &nbsp &nbsp &nbsp &nbsp
+        <a href="CustomerHomepage.jsp">Return</a>                                        
     </body>   
 </html>

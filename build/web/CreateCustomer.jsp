@@ -38,48 +38,56 @@
         <form style="width: 50%;">
             <div class="form-group">
                 <label for="inputFirstName">First Name</label>
-                <input type="text" class="form-control" id="inputFirstName" name="firstname">
+                <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
             </div>
             <div class="form-group">
                 <label for="inputLastName">Last Name</label>
-                <input type="text" class="form-control" id="inputLastName" name="lastname">
+                <input type="text" class="form-control" id="inputLastName" name="lastname" required>
             </div>
             <div class="form-group">
                 <label for="inputSex">Sex</label>
-                <input type="radio" class="form-control" id="inputSex" name="sex" value="M">Male
+                <input type="radio" class="form-control" id="inputSex" name="sex" value="M" required>Male
                 <input type="radio" class="form-control" id="inputSex" name="sex" value="F">Female
             </div>
             <div class="form-group">
                 <label for="inputEmailAddress">Email Address</label>
-                <input type="email" class="form-control" id="inputEmailAddress" name="emailaddress">
+                <input type="email" class="form-control" id="inputEmailAddress" name="emailaddress" required>
             </div>
             <div class="form-group">
                 <label for="inputDoB">Date of Birth</label>
-                <input type="date" class="form-control" id="inputDoB" name="dob">
+                <input type="date" class="form-control" id="inputDoB" name="dob" required>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" name="address">
+                <input type="text" class="form-control" id="inputAddress" name="address" required>
             </div>
             <div class="form-group">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" name="city">
+                <input type="text" class="form-control" id="inputCity" name="city" required>
             </div>
             <div class="form-group">
                 <label for="inputState">State</label>
-                <input type="text" class="form-control" id="inputState" name="state">
+                <input type="text" class="form-control" id="inputState" name="state" required>
             </div>
             <div class="form-group">
                 <label for="inputZipCode">Zip Code</label>
-                <input type="number" class="form-control" id="inputZipCode" name="zipcode">
+                <input type="number" class="form-control" id="inputZipCode" name="zipcode" required>
             </div>
             <div class="form-group">
                 <label for="inputTelephone">Phone Number</label>
-                <input type="tel" class="form-control" id="inputTelephone" name="telephone">
+                <input type="tel" class="form-control" id="inputTelephone" name="telephone" required>
             </div>
             <div class="form-group">
-                <label for="inputPreferences">Preferences</label>
+                <label for="inputPreferences">Preferences (separate by commas, ex: cars,toys,guns)</label>
                 <input type="text" class="form-control" id="inputPreferences" name="preferences">
+            </div>
+            <div class="form-group">
+                <label for="inputCreditCardNum">Credit Card Number</label>
+                <input type="text" class="form-control" id="inputCreditCardNum" name="ccn">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" name="password" required>
             </div>
             <button type="submit" name="btnCreate">Create</button>
             <%
@@ -88,6 +96,7 @@
                     String firstname = request.getParameter("firstname");
                     String lastname = request.getParameter("lastname");
                     String sex = request.getParameter("sex");
+                    String email = request.getParameter("emailaddress");
                     String dob = request.getParameter("dob");
                     String address = request.getParameter("address");
                     String city = request.getParameter("city");
@@ -95,11 +104,13 @@
                     String zipcode = request.getParameter("zipcode");
                     String phonenumber = request.getParameter("telephone");
                     String preferences = request.getParameter("preferences");
+                    String ccn = request.getParameter("ccn");
+                    String password = request.getParameter("password");
                     
                     if (!firstname.isEmpty() && !lastname.isEmpty() && !sex.isEmpty() &&
                         !dob.isEmpty() && !address.isEmpty() && !city.isEmpty() &&
                         !state.isEmpty() && !zipcode.isEmpty() && !phonenumber.isEmpty() &&
-                        !preferences.isEmpty())
+                        !password.isEmpty())
                     {
                         String query = "SELECT MAX(CustomerID) FROM Customer;";
                         ResultSet rs = DBConnection.ExecQuery(query);
@@ -107,24 +118,41 @@
                         // CHECKS TO SEE IF THERE ARE ANY ADS IN DATABASE YET
                         String customerID = (rs != null && rs.next()) ? 
                                 "" + (Integer.parseInt(rs.getString(1)) + 1) : "0";
-                        String rating = String.valueOf(Math.random() * 10 + 1);
+                        String rating = String.valueOf((int) (Math.random() * 10) + 1);
 
-                        // UPDATE THE Advertisement TABLE IN DATABASE
-                        query = "INSERT INTO Customer VALUES(" + customerID
-                                + ", " + firstname + ", '" + lastname + "', '" + sex
-                                + "', '" + dob + "', '" + address + "', '" + city
-                                + ", " + state + ", " + zipcode + ", " + phonenumber
-                                + ", " + preferences + ");";
+                        // INSERT THE Advertisement INTO DATABASE
+                        query = "INSERT INTO Customer VALUES (" + customerID
+                                + ", '" + firstname + "', '" + lastname + "', '" + sex
+                                + "', '" + email + "', '" + dob + "', '" + address + "', '" + city 
+                                + "', '" + state + "', " + zipcode + ", '" + phonenumber
+                                + "', " + rating + ", '" + password + "');";
                         int rowsUpdated = DBConnection.ExecUpdateQuery(query);
-
-                        // CHECK IF THE Ad WAS INSERTED INTO THE DATABASE
-                        if (rowsUpdated <= 0)
+                        
+                        // INSERT THE Preferences INTO DATABASE
+                        query = "INSERT INTO Preferences VALUES(" + customerID
+                                + ", '" + preferences + "');";
+                        rowsUpdated += DBConnection.ExecUpdateQuery(query);
+                        
+                        
+                        // CHECK IF THE Customer WAS INSERTED INTO THE DATABASE
+                        if (rowsUpdated > 0)
                         {
-
+                            out.println("<script type=\"text/javascript\">\n"
+                                    + "var b = confirm('Customer " + customerID + " has been created. "
+                                    + "Click OK to redirect to homepage or Cancel otherwise.');\n"
+                                    + "if (b) location = \"EmployeeHomepage.jsp\";\n"
+                                    + "</script>");
                         } else
                         {
-
+                            out.println("<script type=\"text/javascript\">\n"
+                                    + "alert('An error occurred while trying to update.');\n"
+                                    + "</script>");
                         }
+                    } else
+                    {
+                        out.println("<script type=\"text/javascript\">\n"
+                                + "alert('All forms must be filled out!');\n"
+                                + "</script>");
                     }
                 }
             %>

@@ -1,9 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
 
--->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,6 +20,8 @@
         <link href="css/main.css" rel="stylesheet">
     </head>
     <body >
+        <jsp:include page="<%="nav"+".jsp"%>"/>
+        <br><br><br><br>    
         <div class="alert alert-success">
             <center>
                 <h4>Purchase was a success!</h4>

@@ -30,31 +30,35 @@
     </head>
 
     <body>
-        
         <h1>SocialConnect</h1>
         <h2>Customer Mailing List</h2>
         
+        <a href="EmployeeHomepage.jsp" class="right">Return to homepage</a>
+        
         <table>
             <tr>
+                <th>Customer ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Customer Email Addresses</th>
             </tr>   
             <%
-                String query = "SELECT C.Email FROM Customer C";
+                String query = "SELECT CustomerID, FirstName, LastName, Email FROM Customer";
                 java.sql.ResultSet rs = DBConnection.ExecQuery(query);
 
                 while (rs.next())
                 {
                     %>
                     <tr>
-                        <td>
-                            <% out.print(rs.getString(1)); %>
-                        </td>
+                        <td><%out.print(rs.getString("CustomerID"));%></td>
+                        <td><%out.print(rs.getString("FirstName"));%></td>
+                        <td><%out.print(rs.getString("LastName"));%></td>
+                        <td><%out.print(rs.getString("Email"));%></td>
                     </tr>
                     <%
                 }
             %>
         </table>
-        <button><a href="">Return home</a></button>
     </body>
 
 </html>

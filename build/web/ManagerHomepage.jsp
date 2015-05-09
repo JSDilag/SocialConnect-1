@@ -29,41 +29,37 @@
     </head>
 
     <body>
-        <header>
-            <h1>SocialConnect</h1>
-        </header>
-
-        <nav>
+        <jsp:include page = "ManagerNav.jsp"/>
+        
+        
+    <!--     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <ul id="navbar">
+                <li><h1>SocialConnect</h1></li>
                 <li id="home" class="navbar-item"><a href="ManagerHomepage.jsp">Home</a></li>
                 <li id="messages" class="navbar-item">Messages</li>
 
-        </nav>
+        </nav> -->
 
         <div style="clear: both;"></div>
 
         <!-- Displays the info of the employee -->
-        <div id="my-info">
-            <h3>Profile</h3>
+        <br><br><div id="my-info">
+            
             <%
                 String ID = (String) session.getAttribute("login");
-                String query = "SELECT * FROM Employee E "
-                        + "WHERE E.EmployeeID = " + ID + ";";
+                String query = "SELECT * FROM Manager M "
+                        + "WHERE M.ManagerID = " + ID + ";";
                 java.sql.ResultSet rs = DBConnection.ExecQuery(query);
+                if (rs.next()) {
+                    String name = rs.getString("FirstName") + " " + rs.getString("LastName");
             %>
+            <h3><b><%out.print(name);%></b></h3>
             <span>ID: 
                 <%
                     out.print(ID);
                 %><br>
             </span>
-            <span>
-                Name: 
-                <%
-                    if (rs.next()) {
-                        out.print(rs.getString("FirstName") + " " + rs.getString("LastName"));
-                    
-                %><br>
-            </span>
+           
             <span>Address: 
                 <%
                     out.print(rs.getString("Address") + ", " + rs.getString("City") + ", "
@@ -93,7 +89,7 @@
             <div class="function-border">
                 <span style="border: whitesmoke;">Transactions and Sales...</span>
                 <br>
-                <button class="buttons" onclick="location.href = 'CreateAdvertisement.jsp'">Sales report by month</button>
+                <button class="buttons" onclick="location.href = 'SalesReport.jsp'">Sales report by month</button>
                 <!--<h2>Delete an Advertisement</h2>-->
                 <!--                <form>
                                     <div class="form-group">
@@ -102,13 +98,13 @@
                                     </div>
                                     <button type="submit" class="buttons">Delete Advertisement</button>
                                 </form>-->
-                <button class="buttons" onclick="location.href = 'TransactionList.jsp'">List of transactions</button>
+                <button class="buttons" onclick="location.href = 'ViewTransactions.jsp'">View Transactions</button>
                 <button class="buttons" onclick="location.href = 'SumListOfRevenues.jsp'">Summary listing of revenues</button>
                 <button class="buttons" onclick="location.href = 'EmpMostRevenue.jsp'">Employee that generated most revenue</button>
                 <button class="buttons" onclick="location.href = 'CustMostRevenue.jsp'">Customer that generated most revenue</button>
                 <button class="buttons" onclick="location.href = 'MostActiveItems.jsp'">Most active items</button>
-                <button class="buttons" onclick="location.href = 'CustListByItem.jsp'">List of customer by item</button>
-                <button class="buttons" onclick="location.href = 'SalesReport.jsp'">Sales Report</button>
+                <button class="buttons" onclick="location.href = 'CustListByItem.jsp'">List of customers by item</button>
+      
             </div>
             <div class="function-border">
                 <span style="border: whitesmoke;">Advertisements...</span>

@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,6 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -33,41 +32,26 @@
 
 
 <body>
-    <% String IDs = session.getAttribute("login").toString();
-       int ID = Integer.parseInt(IDs);
-        String Query;
+    <% String ID = session.getAttribute("login").toString();
+        String query;
         int rs;
-       String postIDs = session.getAttribute("postID").toString(); 
+       String postID = request.getParameter("PostID");
     %>
-    <%@ include file="nav.jsp" 
-    %>
-    <script>
-       function Editpost()
-       { <% if(postIDs != null) 
-            {   query="UPDATE Post SET Content="+request.getParameter("Editpost")+"WHERE PostID="+
-                Integer.parseInt(postIDs);
-            } 
-           else 
-           {  <%out.print("Error PostID is null"); %>
-           }
-          %> 
-       }
-  </script>
-   
-      
-
+    <jsp:include page="<%="nav"+".jsp"%>"/>
+        
       <div class="background">
         <div class="innerBackground">
           <div class="container">
             <br><br>
             
-              <%  if(postIDs != null)
-                    {   
-                    %>
-                        <input name="Editpost" type="post" class="form-control input-lg" placeholder="...">
-                        <a href="CustomerHomepage.jsp" >
-                          <input  type="submit" value="post" class="btn btn-primary" onclick="Editpost()">
-                        </a>
+              <%  if(postID != null)
+                    {   session.setAttribute("PostID", postID);
+                    %>  <form class="col-md-12 center-block" action="EditPostQuery.jsp" method="post"> 
+                             <input name="Editpost" type="post" class="form-control input-lg" placeholder="...">
+                            <a href="EditPostQuery.jsp" >
+                                <input  type="submit" value="post" class="btn btn-primary">
+                            </a>
+                        </form> 
                   <%      
                     }
                   else

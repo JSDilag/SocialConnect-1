@@ -20,13 +20,6 @@
 
         <!-- Custom Fonts -->
         <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         
@@ -45,31 +38,31 @@
         <form style="width: 50%;">
             <div class="form-group">
                 <label for="inputType">Type</label>
-                <input type="text" class="form-control" id="inputType" placeholder="Enter type" name="type">
+                <input type="text" class="form-control" id="inputType" name="type">
             </div>
             <div class="form-group">
                 <label for="inputDate">Date</label>
-                <input type="date" class="form-control" id="inputDate" placeholder="Enter date" name="date">
+                <input type="date" class="form-control" id="inputDate" name="date">
             </div>
             <div class="form-group">
                 <label for="inputCompany">Company</label>
-                <input type="text" class="form-control" id="inputCompany" placeholder="Enter company" name="company">
+                <input type="text" class="form-control" id="inputCompany" name="company">
             </div>
             <div class="form-group">
                 <label for="inputItemName">Item Name</label>
-                <input type="text" class="form-control" id="inputItemName" placeholder="Enter item name" name="itemName">
+                <input type="text" class="form-control" id="inputItemName" name="itemName">
             </div>
             <div class="form-group">
                 <label for="inputContent">Content</label>
-                <input type="text" class="form-control" id="inputContent" placeholder="Enter content" name="content">
+                <input type="text" class="form-control" id="inputContent" name="content">
             </div>
             <div class="form-group">
                 <label for="inputUnitPrice">Unit Price</label>
-                <input type="number" class="form-control" id="inputUnitPrice" placeholder="Enter unit price" name="unitPrice">
+                <input type="number" class="form-control" min="0" id="inputUnitPrice" name="unitPrice">
             </div>
             <div class="form-group">
                 <label for="inputQuantity">Quantity</label>
-                <input type="number" class="form-control" id="inputQuantity" placeholder="Enter quantity" name="quantity">
+                <input type="number" class="form-control" min="0" id="inputQuantity" name="quantity">
             </div>
             <button type="submit" name="btnCreate">Create</button>
             <%
@@ -100,29 +93,36 @@
                         query = "INSERT INTO Advertisement VALUES(" + advertisementID
                                 + ", " + employeeID + ", '" + type + "', '" + date
                                 + "', '" + company + "', '" + itemName + "', '" + content
-                                + ", " + unitPrice + ", " + quantity + ");";
-                        int rowsUpdated = DBConnection.ExecUpdateQuery(query);
+                                + "', " + unitPrice + ", " + quantity + ");";
+                        int rowsUpdated = DBConnection.ExecUpdateQuery(query);                        
 
                         // CHECK IF THE Ad WAS INSERTED INTO THE DATABASE
-                        if (rowsUpdated <= 0)
+                        if (rowsUpdated > 0)
                         {
-
+                            // INSERT THIS TRANSACTION INTO Places RELATIONSHIP
+                            query = "INSERT INTO Places VALUES(" + employeeID 
+                                    + ", " + advertisementID + ");";
+                            DBConnection.ExecUpdateQuery(query);
+                            
+                            out.println("<script type=\"text/javascript\">\n"
+                                    + "var b = confirm('Advertisement " + advertisementID + " has been created. "
+                                    + "Click OK to redirect to homepage or Cancel otherwise.');\n"
+                                    + "if (b) location = \"EmployeeHomepage.jsp\";\n"
+                                    + "</script>");
                         } else
                         {
-
+                            out.println("<script type=\"text/javascript\">\n"
+                                    + "alert('An error occurred while trying to update.');\n"
+                                    + "</script>");
                         }
+                    } else
+                    {
+                        out.println("<script type=\"text/javascript\">\n"
+                                + "alert('All forms must be filled out before submitting!');\n"
+                                + "</script>");
                     }
                 }
             %>
-            <button type="reset">Reset</button>
-            <button>Cancel</button>
-            <script>
-                var type = document.getElementById("inputType");
-            </script>
         </form>
-        <%
-            
-        %>
-        
     </body>
 </html>

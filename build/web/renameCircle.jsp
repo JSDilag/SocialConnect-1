@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,43 +25,44 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-    <% String IDs = session.getAttribute("login").toString();
-       int ID = Integer.parseInt(IDs);
+    <% String ID = session.getAttribute("login").toString();
         String Query;
         int rs;
-       String circleIDs= request.getParameter("circleID"); 
+       String circleID= request.getParameter("circleID"); 
        String circleName= request.getParameter("circleName");
        String circleType= request.getParameter("circleType");
     %>
 
     <body>
 
-      <%@ include file="nav.jsp" 
+     <jsp:include page="<%="nav"+".jsp"%>"/>
 
-      %>
 
       <div class="background">
         <div class="innerBackground">
           <div class="container">
-            <br><br>
-            Renames circleName of circle based on the circleID and circleName fields
-              <%  if(circleIDs != null && circleName != null)
-                    {   int circleID = Integer.parseInt(circleIDs);
-                        Query="UPDATE Circle SET CircleName='"+circleName+"' WHERE circleID="+circleID; 
-                        rs= DBConnection.ExecUpdateQuery(Query);
-                        out.print("Circle renamed");
-                    }
-                  else
-                  {   out.print("One or more fields are missing");
-                  }  
-              %>      
-            <a href="CustomerHomepage.jsp">Return</a>  
+                        <br><br><br><br><br>
+
+                        <br><br><br><br><br>
+
+                                  <form class="col-md-12 center-block" action="renameCircleQuery.jsp" method="post">
+                        <div class="form-group">
+                            <input name="circleID" type="text" class="form-control input-lg" placeholder="circleID" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input name="circleName" type="text" class="form-control input-lg" placeholder="circleName">
+                        </div>
+                      
+                        <div class="form-group">                       
+                            <button class="btn btn-primary btn-lg btn-block">Rename Circle</button>                         
+                        </div>  
+                    </form>   
+            <a href="Circles.jsp">Return</a>  
           </div>
         </div>
       </div>

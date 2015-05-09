@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SocialConnect Add To Circle</title>
+        <title>SocialConnect Remove From Circle</title>
         <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
         <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon">
         <meta name="generator" content="Bootply" />
@@ -25,7 +25,6 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -35,35 +34,38 @@
        int ID = Integer.parseInt(IDs);
         String Query;
         java.sql.ResultSet rs;
-       String circleIDs= request.getParameter("circleID"); 
+       String circleID= request.getParameter("circleID"); 
        String circleName= request.getParameter("circleName");
        String circleType= request.getParameter("circleType");
-       String userIDs= request.getParameter("userID");
+       String userID= request.getParameter("userID");
     %>
 
     <body>
 
-      <%@ include file="nav.jsp" 
+    <jsp:include page="<%="nav"+".jsp"%>"/>
 
-      %>
 
       <div class="background">
         <div class="innerBackground">
           <div class="container">
-            <br><br>
-            Add userID to circle that's based on the circleID field
-              <%  if(circleIDs != null && userIDs != null)
-                    {   int circleID = Integer.parseInt(circleIDs);
-                        int userID = Integer.parseInt(userIDs);
-                        Query="INSERT INTO CircleMembership VALUES ("+userID+", "+circleID+")";
-                        rs= DBConnection.ExecQuery(Query);
-                        out.print("user added to circle");
-                    }
-                  else
-                  {   out.print("One or more fields are missing");
-                  }  
-              %>      
-            <a href="CustomerHomepage.jsp">Return</a>  
+                        <br><br><br><br><br>
+
+                        <br><br><br><br><br>
+
+              <form class="col-md-12 center-block" action="removeFromCircleQuery.jsp" method="post">
+                        <div class="form-group">
+                            <input name="circleID" type="text" class="form-control input-lg" placeholder="circleID" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input name="userID" type="text" class="form-control input-lg" placeholder="userID" >
+                        </div>
+                        <div class="form-group">                       
+                            <button class="btn btn-primary btn-lg btn-block">Remove From Circle</button>                         
+                        </div>  
+                    </form>     
+              <center>
+                  <a href="Circles.jsp">Return</a>
+              </center>    
           </div>
         </div>
       </div>

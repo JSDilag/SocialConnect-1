@@ -1,7 +1,7 @@
-<!--<%@page import="DBWorks.DBConnection"%>
+<%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group">                          	
                                 <h4 style="display:inline;">Date Of Birth </h4>
-                                <input name="DOB" type="text" class="form-control input-lg" placeholder="e.g. 1988-10-10" >
+                                <input name="DOB" type="text" class="form-control input-lg" value="2015-05-07" placeholder="e.g. 1988-10-10" >
                             </div>                        
                             <div class="form-group">                          	
                                 <h4 style="display:inline;">Address </h4>
@@ -110,11 +110,10 @@
                             <div class="form-group">                          	
                                 <h4 style="display:inline;">Password </h4>
                                 <input name="Password" type="password" class="form-control input-lg" placeholder="e.g. admin" >
-                                <div class="form-group"> 
-                                    <center>                         	
-                                        <a class="btn btn-large btn-info" href="RegistrationSuccess.jsp">Register</a>
-                                    </center>
-                                </div>
+                            </div>
+                            <div class="form-group"> 
+                                <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+                            </div>                            
                         </form>
                     </div>
                     <div class="modal-footer">

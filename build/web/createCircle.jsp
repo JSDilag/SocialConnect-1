@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,43 +25,43 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
 
     <body>
-      <% String IDs = session.getAttribute("login").toString();
-        int ID = Integer.parseInt(IDs);
+      <% String ID = session.getAttribute("login").toString();
           String Query;
-         String circleIDs= request.getParameter("circleID"); 
+         String circleID= request.getParameter("circleID"); 
 
          String circleName= request.getParameter("circleName");
          String circleType= request.getParameter("circleType");
       %>
-      <%@ include file="nav.jsp" 
+    <jsp:include page="<%="nav"+".jsp"%>"/>
 
-      %>
 
       <div class="background">
         <div class="innerBackground">
           <div class="container">
-            <br><br>
+              <br><br><br><br><br>
             Create a circle based on the circleID, circleName, and circleType fields
-              <%  if(circleIDs != null && circleName != null && circleType !=null)
-                    {   int circleID = Integer.parseInt(circleIDS);
-                        Query="INSERT INTO Circle VALUES ("+circleID+", '"+circleName+"', '"+circleType+"', "+ID+")";
-                        DBConnection.ExecQuery(Query);
-                        out.print("Circle created");
-                        DBConnection.ExecQuery("INSERT INTO Owns VALUES ("+circleID+", "+ID+")");
-                        DBConnection.ExecQuery("INSERT INTO CircleMembership VALUES ("+ID+", "+circleID+")");
-
-                    }
-                  else
-                  {   out.print("One or more fields are missing");
-                  }  
-              %>      
+            <br><br><br><br><br>
+                    <form class="col-md-12 center-block" action="createCircleQuery.jsp" method="post">
+                        <div class="form-group">
+                            <input name="circleID" type="text" class="form-control input-lg" placeholder="circleID" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input name="circleName" type="text" class="form-control input-lg" placeholder="circleName">
+                        </div>
+                        <div class="form-group">
+                            <input name="circleType" type="text" class="form-control input-lg" placeholder="circleType">
+                        </div>
+                        <div class="form-group">                       
+                            <button class="btn btn-primary btn-lg btn-block">Create Circle</button>                         
+                        </div>  
+                    </form>    
+         
             <a href="CustomerHomepage.jsp">Return</a>  
           </div>
         </div>

@@ -37,7 +37,7 @@
         <form style="width: 50%;">
             <div class="form-group">
                 <label for="inputAdID">Enter Advertisement ID to delete</label>
-                <input type="number" class="form-control" id="inputAdID" name="adid">
+                <input type="number" class="form-control" min="0" id="inputAdID" name="adid">
             </div>
             <button type="submit" name="btnDelete">Delete</button>
             <%
@@ -52,17 +52,17 @@
                         int deleted = DBConnection.ExecUpdateQuery(query);
                         
                         // CHECK IF IT HAS BEEN DELETED
-                        if (deleted <= 0)
+                        if (deleted > 0)
                         {
                             out.println("<script type=\"text/javascript\">\n"
-                                    + "alert('The advertisement ID is invalid.');\n"
+                                    + "var b = confirm('Advertisement " + advertisementID + " has been deleted. "
+                                    + "Click OK to redirect to homepage or Cancel otherwise.');\n"
+                                    + "if (b) location = \"EmployeeHomepage.jsp\";\n"
                                     + "</script>");
                         } else
                         {
                             out.println("<script type=\"text/javascript\">\n"
-                                    + "boolean b = confirm('Advertisement has been deleted."
-                                    + "Click OK to redirect to homepage and Cancel otherwise.);\n"
-                                    + "if (b) location = EmployeeHomepage.jsp\n"
+                                    + "alert('The advertisement ID is invalid.');\n"
                                     + "</script>");
                         }
                     } else

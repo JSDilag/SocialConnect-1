@@ -1,8 +1,8 @@
-<!--
+
 <%@page import="DBWorks.DBConnection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet" %>
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,6 @@
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="css/main.css" rel="stylesheet"> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
         <script src="js/jquery.slides.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -34,40 +33,28 @@
 
 
 <body>
-    <% String IDs = session.getAttribute("login").toString();
-       int ID = Integer.parseInt(IDs);
-        String Query;
+    <% String ID = session.getAttribute("login").toString();
+        String query;
         int rs;
-       String commentIDs = session.getAttribute("commentID").toString(); 
+       String commentID = request.getParameter("CommentID");
     %>
-    <%@ include file="nav.jsp" 
-    %>
-   <script>
-         function Editcomment()
-         { <%if(commentIDs != null) 
-              {   query="UPDATE Comment SET Content="+request.getParameter("Editcomment")+"WHERE CommentID="+
-                Integer.parseInt(commentIDs);
-              } 
-            else 
-            {  out.print("Error CommentID is null");
-            }
-           %>
-         }
-    </script>
+    <jsp:include page="<%="nav"+".jsp"%>"/>
 
 
       <div class="background">
         <div class="innerBackground">
           <div class="container">
-            <br><br>
+              <br><br><br><br><br>
             
-              <%  if(commentIDs != null)
-                    {   
-                    %>
-                        <input name="Editcomment" type="comment" class="form-control input-lg" placeholder="...">
-                        <a href="CustomerHomepage.jsp" >
-                          <input  type="submit" value="comment" class="btn btn-primary" onclick="Editcomment()">
-                        </a>
+              <%  if(commentID != null)
+                    {   session.setAttribute("CommentID", commentID);
+                    
+                    %>  <form class="col-md-12 center-block" action="EditCommentQuery.jsp" method="post"> 
+                            <input name="Editcomment" type="comment" class="form-control input-lg" placeholder="...">
+                            <a href="EditCommentQuery.jsp" >
+                              <input  type="submit" value="comment" class="btn btn-primary">
+                            </a>
+                        </form>    
                   <%      
                     }
                   else
